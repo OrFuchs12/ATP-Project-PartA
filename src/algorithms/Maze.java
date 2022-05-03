@@ -41,9 +41,9 @@ public class Maze {
     }
 
     public Maze(int columns, int rows) {
-        this.n_Maze = new ArrayList<>(columns);
+        this.n_Maze = new ArrayList<>(rows);
         for (int i=0 ; i<rows; i++){
-            n_Maze.add(i,new ArrayList<>(rows));
+            n_Maze.add(i,new ArrayList<>(columns));
 
         }
 

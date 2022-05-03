@@ -6,6 +6,10 @@ public class Position {
     private boolean visited;
     private Position father;
 
+
+
+
+
     public int getColumnIndex() {
         return ColumnIndex;
     }

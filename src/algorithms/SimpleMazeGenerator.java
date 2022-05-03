@@ -26,14 +26,33 @@ public class SimpleMazeGenerator extends AMazeGenerator {
         /*
         Randomize start position and goal position
          */
-        ArrayList<Position> Frame = new ArrayList<>(2*rows + 2* columns - 4) ;
-        for(int i=0; i<columns; i++){
-            Frame.add(new Position(i,0));
-            Frame.add(new Position(i,rows-1) );
+        int frame_size;
+        if (rows == 1 || columns == 1 ||rows == 2 || columns==2 )
+        {
+            frame_size =rows*columns;
         }
-        for (int i = 1 ; i<rows-1; i++){
-            Frame.add(new Position(0,i));
-            Frame.add(new Position(columns-1, i));
+        else {
+            frame_size = 2*rows + 2* columns - 4;
+        }
+
+        ArrayList<Position> Frame = new ArrayList<>(frame_size) ;
+        if (frame_size == rows*columns)
+        {
+            for (int i=0; i<rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    Frame.add(new Position(j, i));
+                }
+            }
+        }
+        else {
+            for(int i=0; i<columns; i++){
+                Frame.add(new Position(i,0));
+                Frame.add(new Position(i,rows-1) );
+            }
+            for (int i = 1 ; i<rows-1; i++){
+                Frame.add(new Position(0,i));
+                Frame.add(new Position(columns-1, i));
+            }
         }
 
         Collections.shuffle(Frame);
@@ -47,7 +66,7 @@ public class SimpleMazeGenerator extends AMazeGenerator {
         /*
         breaking the walls to pave the way for a solution
          */
-        Position curr = new Position(Simple.getStartPosition().getRowIndex(), Simple.getStartPosition().getColumnIndex());
+        Position curr = new Position(Simple.getStartPosition().getColumnIndex(), Simple.getStartPosition().getRowIndex());
         while (curr.getColumnIndex() != Simple.getGoalPosition().getColumnIndex()){
             Simple.setPosition(curr,0);
             if(curr.getColumnIndex() > Simple.getGoalPosition().getColumnIndex()){

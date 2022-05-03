@@ -3,7 +3,7 @@ package algorithms;
 public class Main {
     public static void main(String[] args) {
         IMazeGenerator mg = new SimpleMazeGenerator();
-        Maze maze = mg.generate(1,3);
+        Maze maze = mg.generate(2,3);
         System.out.println(maze);
         Position startPosition = maze.getStartPosition();
 // print the start position
