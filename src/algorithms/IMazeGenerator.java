@@ -15,5 +15,5 @@ public interface IMazeGenerator {
       * @param rows - number of rows in the maze
       * @return the time it takes to generate the maze by substracting the finel time from the starting time
       */
-     public long messureAlgorithmTimeMillis(int columns, int rows);
+     public long measureAlgorithmTimeMillis(int columns, int rows);
 }
