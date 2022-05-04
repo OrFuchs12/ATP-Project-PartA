@@ -38,6 +38,16 @@ public class Position {
         father= null;
     }
 
+    public void setFather(Position p)
+    {
+        father = p;
+    }
+
+    public Position getFather()
+    {
+        return father;
+    }
+
 
     @Override
     public String toString() {

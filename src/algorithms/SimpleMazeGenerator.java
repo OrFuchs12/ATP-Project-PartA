@@ -23,41 +23,7 @@ public class SimpleMazeGenerator extends AMazeGenerator {
                 Simple.n_Maze.get(i).add(j,rand_int);
             }
         }
-        /*
-        Randomize start position and goal position
-         */
-        int frame_size;
-        if (rows == 1 || columns == 1 ||rows == 2 || columns==2 )
-        {
-            frame_size =rows*columns;
-        }
-        else {
-            frame_size = 2*rows + 2* columns - 4;
-        }
 
-        ArrayList<Position> Frame = new ArrayList<>(frame_size) ;
-        if (frame_size == rows*columns)
-        {
-            for (int i=0; i<rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    Frame.add(new Position(j, i));
-                }
-            }
-        }
-        else {
-            for(int i=0; i<columns; i++){
-                Frame.add(new Position(i,0));
-                Frame.add(new Position(i,rows-1) );
-            }
-            for (int i = 1 ; i<rows-1; i++){
-                Frame.add(new Position(0,i));
-                Frame.add(new Position(columns-1, i));
-            }
-        }
-
-        Collections.shuffle(Frame);
-        Simple.setStartPosition(Frame.get(0));
-        Simple.setGoalPosition(Frame.get(1));
         /*
         set the start and goal position to 0 so we can start there
          */

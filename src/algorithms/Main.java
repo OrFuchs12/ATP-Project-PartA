@@ -2,8 +2,8 @@ package algorithms;
 
 public class Main {
     public static void main(String[] args) {
-        IMazeGenerator mg = new SimpleMazeGenerator();
-        Maze maze = mg.generate(2,3);
+        IMazeGenerator mg = new EmptyMazeGenerator();
+        Maze maze = mg.generate(5,3);
         System.out.println(maze);
         Position startPosition = maze.getStartPosition();
 // print the start position
