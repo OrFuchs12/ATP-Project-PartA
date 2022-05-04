@@ -20,7 +20,7 @@ public class SimpleMazeGenerator extends AMazeGenerator {
         for(int i =0; i<rows; i++){
             for(int j = 0; j< columns; j++){
                 int rand_int = rand.nextInt(2);
-                Simple.n_Maze.get(i).add(j,rand_int);
+                Simple.AddPosition(j,i,rand_int);
             }
         }
 

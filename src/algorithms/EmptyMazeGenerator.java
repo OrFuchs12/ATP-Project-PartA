@@ -8,7 +8,7 @@ public class EmptyMazeGenerator extends AMazeGenerator{
         Maze Empty = new Maze(columns,rows);
         for (int i=0; i<rows; i++){
             for (int j =0; j<columns; j++){
-                Empty.n_Maze.get(i).add(j,0);
+                Empty.AddPosition(j,i,0);
             }
         }
 

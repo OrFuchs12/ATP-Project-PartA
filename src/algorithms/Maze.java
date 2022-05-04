@@ -8,7 +8,7 @@ public class Maze {
     protected Position StartPosition;
     protected Position GoalPosition;
     protected ArrayList<Position> Frame;
-    protected ArrayList<ArrayList<Integer>> n_Maze;
+    private ArrayList<ArrayList<Integer>> n_Maze;
 
     public int getColumns() {
         return columns;
@@ -96,7 +96,6 @@ public class Maze {
 
         Collections.shuffle(Frame);
         StartPosition = Frame.get(0);
-        //n_Maze.get(StartPosition.getRowIndex()).set(StartPosition.getColumnIndex(), 0);
         GoalPosition = Frame.get(1);
 
 
@@ -111,9 +110,16 @@ public class Maze {
         n_Maze.get(p.getRowIndex()).set(p.getColumnIndex(), value);
 
     }
+    public void AddPosition(int columns , int rows, int value){
+        n_Maze.get(rows).add(columns,value);
+    }
 
     @Override
     public String toString() {
-        return " " + n_Maze + "start is in " + StartPosition +" Goal is in " + GoalPosition;
+        String Maze = "";
+        for(int i =0 ; i<rows; i++){
+            Maze += (n_Maze.get(i) + "\n");
+        }
+        return Maze;
     }
 }
