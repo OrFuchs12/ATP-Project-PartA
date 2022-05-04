@@ -30,9 +30,10 @@ public class MyMazeGenerator extends AMazeGenerator{
         }
         else {
             Random rand = new Random();
-            int colRand = rand.nextInt(columns +1);
-            int rowRand = rand.nextInt(rows + 1);
-            Position curr = new Position(colRand,rowRand);
+//            int colRand = rand.nextInt(columns +1);
+//            int rowRand = rand.nextInt(rows + 1);
+//            Position curr = new Position(colRand,rowRand);
+            Position curr = new Position(MyMaze.getStartPosition().getColumnIndex(),MyMaze.getStartPosition().getRowIndex());
             do {
                 all_neighbors.addAll(find_my_neighbors(curr, MyMaze));
                 Collections.shuffle(all_neighbors);
