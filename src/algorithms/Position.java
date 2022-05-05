@@ -1,10 +1,13 @@
 package algorithms;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Position {
     private int ColumnIndex;
     private int RowIndex;
     private boolean visited;
-    private Position father;
+    private ArrayList<Position> father;
 
 
 
@@ -34,19 +37,22 @@ public class Position {
         ColumnIndex = columnIndex;
         RowIndex = rowIndex;
         visited= false;
-        father= null;
+        father= new ArrayList<Position>();
     }
 
     public void setFather(Position p)
     {
-        father = p;
+        father.add(p);
     }
 
-    public Position getFather()
+    public ArrayList<Position> getFather()
     {
         return father;
     }
 
+    public void MixFather() {
+        Collections.shuffle(father);
+    }
 
     @Override
     public String toString() {

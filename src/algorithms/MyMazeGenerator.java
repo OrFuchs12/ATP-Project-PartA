@@ -29,7 +29,7 @@ public class MyMazeGenerator extends AMazeGenerator{
 
         }
         else {
-            Random rand = new Random();
+            //Random rand = new Random();
 //            int colRand = rand.nextInt(columns +1);
 //            int rowRand = rand.nextInt(rows + 1);
 //            Position curr = new Position(colRand,rowRand);
@@ -39,34 +39,35 @@ public class MyMazeGenerator extends AMazeGenerator{
                 Collections.shuffle(all_neighbors);
                 curr = all_neighbors.remove(0);
                 MyMaze.setPosition(curr, 0);
-                MyMaze.setPosition(curr.getFather(), 0);
+                curr.MixFather();
+                MyMaze.setPosition(curr.getFather().get(0), 0);
             }
             while (!all_neighbors.isEmpty());
-//            if (MyMaze.getValue(MyMaze.getGoalPosition()) == 1) {
-//                ArrayList<Position> frame = MyMaze.getFrame();
-//                for (int i = 2; i < frame.size(); i++) {
-//                    if (MyMaze.getValue(frame.get(i)) == 0) {
-//                        MyMaze.setGoalPosition(frame.get(i));
-//                        break;
-//                    }
-//
-//                }
-//            }
-            if(MyMaze.getValue(MyMaze.getStartPosition()) == 1) {
+            if (MyMaze.getValue(MyMaze.getGoalPosition()) == 1) {
                 ArrayList<Position> frame = MyMaze.getFrame();
-                Collections.shuffle(frame);
-                for(int i = 0; i<frame.size(); i++){
-                    Position temp = frame.get(i);
-                    if (temp.getRowIndex() == 0){
-                        temp.Go_Up();
-                        if (MyMaze.getValue(temp)== 0){
-                            temp.Go_Down();
-                            MyMaze.setStartPosition(temp);
-                        }
-
+                for (int i = 2; i < frame.size(); i++) {
+                    if (MyMaze.getValue(frame.get(i)) == 0) {
+                        MyMaze.setGoalPosition(frame.get(i));
+                        break;
                     }
+
                 }
             }
+//            if(MyMaze.getValue(MyMaze.getStartPosition()) == 1) {
+//                ArrayList<Position> frame = MyMaze.getFrame();
+//                Collections.shuffle(frame);
+//                for(int i = 0; i<frame.size(); i++){
+//                    Position temp = frame.get(i);
+//                    if (temp.getRowIndex() == 0){
+//                        temp.Go_Up();
+//                        if (MyMaze.getValue(temp)== 0){
+//                            temp.Go_Down();
+//                            MyMaze.setStartPosition(temp);
+//                        }
+//
+//                    }
+//                }
+//            }
         }
         return MyMaze;
     }
