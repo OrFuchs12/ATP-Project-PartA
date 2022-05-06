@@ -1,7 +1,8 @@
-package algorithms;
+package algorithms.mazeGenerators;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+
 public class Maze {
     protected int columns;
     protected int rows;
@@ -55,14 +56,10 @@ public class Maze {
     public Maze(int columns, int rows) {
         this.n_Maze = new ArrayList<ArrayList<Integer>>(rows);
         for (int i=0 ; i<rows; i++){
-            n_Maze.add(new ArrayList<Integer>(columns));
-
-
-        }
-
+            n_Maze.add(new ArrayList<Integer>(columns));}
         this.columns =columns;
         this.rows = rows;
-                /*
+        /*
         Randomize start position and goal position
          */
         int frame_size;
@@ -114,12 +111,42 @@ public class Maze {
         n_Maze.get(rows).add(columns,value);
     }
 
-    @Override
-    public String toString() {
-        String Maze = "";
-        for(int i =0 ; i<rows; i++){
-            Maze += (n_Maze.get(i) + "\n");
+    public void print() {
+        for (int i=0; i<rows; i++)
+        {
+            if (StartPosition.getRowIndex() ==i)
+            {
+                System.out.print("[");
+                for (int j=0; j<StartPosition.getColumnIndex(); j++)
+                {
+                    System.out.print(getValue(j,i)+ ", ");
+                }
+                System.out.print("S");
+                for (int j=StartPosition.getColumnIndex()+1; j<columns;j++)
+                {
+                    System.out.print(", ");
+                    System.out.print(getValue(j,i)+"");
+                }
+                System.out.println("]");
+
+            }
+            if (GoalPosition.getRowIndex() ==i)
+            {
+                System.out.print("[");
+                for (int j=0; j<GoalPosition.getColumnIndex(); j++)
+                {
+                    System.out.printf(getValue(j,i)+ ", ");
+                }
+                System.out.print("E");
+                for (int j=GoalPosition.getColumnIndex()+1; j<columns;j++)
+                {
+                    System.out.print(", ");
+                    System.out.print(getValue(j,i)+"");
+                }
+                System.out.println("]");
+
+            }
+            System.out.println(n_Maze.get(i));
         }
-        return Maze;
     }
 }

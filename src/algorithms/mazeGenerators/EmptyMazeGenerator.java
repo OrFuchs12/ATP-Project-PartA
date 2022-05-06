@@ -1,7 +1,8 @@
-package algorithms;
+package algorithms.mazeGenerators;
+
 import java.util.ArrayList;
 import java.util.Collections;
-public class EmptyMazeGenerator extends AMazeGenerator{
+public class EmptyMazeGenerator extends AMazeGenerator {
 
     @Override
     public Maze generate(int columns, int rows) {

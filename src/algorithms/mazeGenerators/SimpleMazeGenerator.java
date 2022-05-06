@@ -1,9 +1,9 @@
-package algorithms;
+package algorithms.mazeGenerators;
 
-import algorithms.AMazeGenerator;
+import algorithms.mazeGenerators.AMazeGenerator;
+import algorithms.mazeGenerators.Maze;
+import algorithms.mazeGenerators.Position;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class SimpleMazeGenerator extends AMazeGenerator {

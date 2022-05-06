@@ -1,10 +1,10 @@
-package algorithms;
+package algorithms.mazeGenerators;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class MyMazeGenerator extends AMazeGenerator{
+public class MyMazeGenerator extends AMazeGenerator {
     @Override
     public Maze generate(int columns, int rows) {
         ArrayList<Position> all_neighbors = new ArrayList<Position>();
@@ -39,6 +39,22 @@ public class MyMazeGenerator extends AMazeGenerator{
                 Collections.shuffle(all_neighbors);
                 curr = all_neighbors.remove(0);
                 MyMaze.setPosition(curr, 0);
+                if (curr.getColumnIndex() +2 < columns && MyMaze.getValue(curr.getColumnIndex()+2, curr.getRowIndex()) == 0)
+                {
+                    curr.setFather(new Position(curr.getColumnIndex()+1, curr.getRowIndex()));
+                }
+                if (curr.getColumnIndex() -2 >= 0 && MyMaze.getValue(curr.getColumnIndex()-2, curr.getRowIndex()) == 0)
+                {
+                    curr.setFather(new Position(curr.getColumnIndex()-1, curr.getRowIndex()));
+                }
+                if (curr.getRowIndex() +2 < rows && MyMaze.getValue(curr.getColumnIndex(), curr.getRowIndex()+2) == 0)
+                {
+                    curr.setFather(new Position(curr.getColumnIndex(), curr.getRowIndex()+1));
+                }
+                if (curr.getRowIndex() -2 >=0 && MyMaze.getValue(curr.getColumnIndex(), curr.getRowIndex()-2) == 0)
+                {
+                    curr.setFather(new Position(curr.getColumnIndex(), curr.getRowIndex()-1));
+                }
                 curr.MixFather();
                 MyMaze.setPosition(curr.getFather().get(0), 0);
             }
