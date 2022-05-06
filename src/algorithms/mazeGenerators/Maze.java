@@ -111,10 +111,57 @@ public class Maze {
         n_Maze.get(rows).add(columns,value);
     }
 
+
+
     public void print() {
         for (int i=0; i<rows; i++)
         {
-            if (StartPosition.getRowIndex() ==i)
+            if (StartPosition.getRowIndex() ==i && GoalPosition.getRowIndex() ==i)
+            {
+                boolean firststart=false;
+                int first=0;
+                int second=0;
+                if (StartPosition.getColumnIndex() < GoalPosition.getColumnIndex()){
+                     first = StartPosition.getColumnIndex();
+                     second = GoalPosition.getColumnIndex();
+                     firststart=true;   }
+                else{
+                     first = GoalPosition.getColumnIndex();
+                     second = StartPosition.getColumnIndex();
+                }
+                System.out.print("[");
+                for (int j=0; j<first; j++){
+                    System.out.print(getValue(j,i)+ ", ");
+                }
+                if (firststart==true)
+                {
+                    System.out.print("S");
+                }
+                else{
+                    System.out.print("E");
+                }
+                for (int j=first+1; j<second; j++)
+                {
+                    System.out.print(", ");
+                    System.out.print(getValue(j,i)+"");
+                }
+                if (firststart==true)
+                {
+                    System.out.print(", E");
+                }
+                else{
+                    System.out.print(", S");
+                }
+                for (int j=second+1; j<columns;j++)
+                {
+                    System.out.print(", ");
+                    System.out.print(getValue(j,i)+"");
+                }
+                System.out.println("]");
+
+
+            }
+            else if (StartPosition.getRowIndex() ==i)
             {
                 System.out.print("[");
                 for (int j=0; j<StartPosition.getColumnIndex(); j++)
@@ -130,7 +177,7 @@ public class Maze {
                 System.out.println("]");
 
             }
-            if (GoalPosition.getRowIndex() ==i)
+            else if (GoalPosition.getRowIndex() ==i)
             {
                 System.out.print("[");
                 for (int j=0; j<GoalPosition.getColumnIndex(); j++)
@@ -146,7 +193,8 @@ public class Maze {
                 System.out.println("]");
 
             }
-            System.out.println(n_Maze.get(i));
+            else{
+            System.out.println(n_Maze.get(i));}
         }
     }
 }
