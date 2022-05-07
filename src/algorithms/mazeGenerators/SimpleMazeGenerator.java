@@ -1,20 +1,26 @@
 package algorithms.mazeGenerators;
-
 import algorithms.mazeGenerators.AMazeGenerator;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.Position;
-
 import java.util.Random;
 
-public class SimpleMazeGenerator extends AMazeGenerator {
-    public SimpleMazeGenerator() {
-    }
 
+/**
+ * Simple Maze Generator extemds AMazeGenerator class and its generate function makes a Maze the includes
+ * random picks for each position
+ */
+public class SimpleMazeGenerator extends AMazeGenerator {
+    public SimpleMazeGenerator() {}
+
+    /**
+     * first each value is chosen randomly. Second, we "walk" from the start position to the end position
+     * in a straight line and if we see a wall we "break" so ensure a solution
+     * @param columns - number of columns in the maze
+     * @param rows - number of rows in the maze
+     * @return a Simple Maze
+     */
     @Override
     public Maze generate(int columns, int rows) {
-        /*
-        Creating the Maze
-         */
         Maze Simple = new Maze(columns, rows);
         Random rand = new Random();
         for(int i =0; i<rows; i++){
@@ -41,7 +47,6 @@ public class SimpleMazeGenerator extends AMazeGenerator {
             if(curr.getColumnIndex() < Simple.getGoalPosition().getColumnIndex()){
                 curr.Go_Right();
             }
-
         }
         while (curr.getRowIndex() != Simple.getGoalPosition().getRowIndex()){
             Simple.setPosition(curr,0);
@@ -51,8 +56,6 @@ public class SimpleMazeGenerator extends AMazeGenerator {
             if(curr.getRowIndex() < Simple.getGoalPosition().getRowIndex()){
                 curr.Go_Up();
             }
-
-
         }
         Simple.setPosition(Simple.getGoalPosition(),0);
         return Simple;

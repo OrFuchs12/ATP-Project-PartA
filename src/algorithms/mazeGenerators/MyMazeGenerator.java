@@ -1,10 +1,22 @@
 package algorithms.mazeGenerators;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+
+/**
+ * generates a maze according to the Prim algorithm
+ */
 public class MyMazeGenerator extends AMazeGenerator {
+
+    /**
+     * while there are still possible neighbors- starts at the StartPostion, finds all neighbors
+     * and chooses one randomly, then chooses a father of the neighbor. takes into consideration
+     * the handling of a 2X2 maze
+     * @param columns - number of columns in the maze
+     * @param rows - number of rows in the maze
+     * @return the generated maze
+     */
     @Override
     public Maze generate(int columns, int rows) {
         ArrayList<Position> all_neighbors = new ArrayList<Position>();
@@ -88,6 +100,13 @@ public class MyMazeGenerator extends AMazeGenerator {
         return MyMaze;
     }
 
+
+    /**
+     *
+     * @param p
+     * @param maze
+     * @return a list of neighbors in a distance of 2 in the maze
+     */
     private ArrayList<Position> find_my_neighbors(Position p, Maze maze) {
         ArrayList<Position> neighbors = new ArrayList<>();
         if (p.getColumnIndex() + 2 < maze.getColumns())
@@ -118,7 +137,5 @@ public class MyMazeGenerator extends AMazeGenerator {
         return neighbors;
     }
 
-    public MyMazeGenerator() {
-
-    }
+    public MyMazeGenerator() {}
 }

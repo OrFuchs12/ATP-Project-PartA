@@ -3,6 +3,12 @@ package algorithms.mazeGenerators;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
+/**
+ * Class Maze: includes number of columns, rows, StartPosition and  GoalPosition of type Postion, n_Maze which is a 2D
+ * arraylist of Integers while 0 is a path and 1 is a wall, and Frame is an arraylist of Positions that describes all
+ * of the Positions that are considered on the frame of the maze.
+ */
 public class Maze {
     protected int columns;
     protected int rows;
@@ -11,57 +17,109 @@ public class Maze {
     protected ArrayList<Position> Frame;
     private ArrayList<ArrayList<Integer>> n_Maze;
 
+    /**
+     *
+     * @return columns
+     */
     public int getColumns() {
         return columns;
     }
 
-    public void setColumns(int columns) {
-        this.columns = columns;
-    }
 
+
+//    public void setColumns(int columns) {
+//        this.columns = columns;
+//    }
+
+
+    /**
+     *
+     * @return rows
+     */
     public int getRows() {
         return rows;
     }
 
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
+//    public void setRows(int rows) {
+//        this.rows = rows;
+//    }
 
+    /**
+     *
+     * @param p of type Position
+     * @return the value of this Position in the maze
+     */
     public int getValue(Position p)
     {
         return n_Maze.get(p.getRowIndex()).get(p.getColumnIndex());
     }
+
+    /**
+     *
+     * @param columns
+     * @param rows
+     * @return the value of these {columns,rows} in the maze
+     */
 
     public int getValue(int columns, int rows)
     {
         return n_Maze.get(rows).get(columns);
     }
 
+    /**
+     *
+     * @return the location of the StartPosition
+     */
+
     public Position getStartPosition() {
         return StartPosition;
     }
 
+
+    /**
+     * updates the start position according to the param only if it is part of the frame
+     * @param startPosition
+     */
     public void setStartPosition(Position startPosition) {
-        StartPosition = startPosition;
+        if (Frame.contains(startPosition)){
+            StartPosition = startPosition;}
     }
+
+    /**
+     *
+     * @return the location of the goal position
+     */
 
     public Position getGoalPosition() {
         return GoalPosition;
     }
 
+
+    /**
+     * updates the goal position according to the param only if it is part of the frame
+     * @param goalPosition
+     */
     public void setGoalPosition(Position goalPosition) {
-        GoalPosition = goalPosition;
+        if(Frame.contains(goalPosition)){
+        GoalPosition = goalPosition;}
     }
 
+
+    /**
+     * Constructor:
+     * initializes 2D arraylist
+     * adds relevent Positions to the frame arraylist
+     * creates start and goal positions
+     *
+     * @param columns
+     * @param rows
+     */
     public Maze(int columns, int rows) {
         this.n_Maze = new ArrayList<ArrayList<Integer>>(rows);
         for (int i=0 ; i<rows; i++){
             n_Maze.add(new ArrayList<Integer>(columns));}
         this.columns =columns;
         this.rows = rows;
-        /*
-        Randomize start position and goal position
-         */
         int frame_size;
         if (rows == 1 || columns == 1 ||rows == 2 || columns==2 )
         {
@@ -98,21 +156,39 @@ public class Maze {
 
     }
 
-
+    /**
+     *
+     * @return arraylist of poistions on the frame
+     */
     public ArrayList<Position> getFrame() {
         return Frame;
     }
+
+    /**
+     * sets a value to the position in the maze
+     * @param p
+     * @param value
+     */
     public void setPosition(Position p, int value){
 
         n_Maze.get(p.getRowIndex()).set(p.getColumnIndex(), value);
 
     }
+
+    /**
+     * adds a value to the position in the maze
+     * @param columns
+     * @param rows
+     * @param value
+     */
     public void AddPosition(int columns , int rows, int value){
         n_Maze.get(rows).add(columns,value);
     }
 
 
-
+    /**
+     * prints the n_Maze while the StartPoint is labeled S and GoalPoint E
+     */
     public void print() {
         for (int i=0; i<rows; i++)
         {
