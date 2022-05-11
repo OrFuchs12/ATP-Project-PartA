@@ -15,7 +15,7 @@ public class Maze {
     protected Position StartPosition;
     protected Position GoalPosition;
     protected ArrayList<Position> Frame;
-    private ArrayList<ArrayList<Integer>> n_Maze;
+    protected ArrayList<ArrayList<Integer>> n_Maze;
 
     /**
      *

@@ -7,6 +7,13 @@ public abstract class AState {
     private boolean isVisited;
 
 
+    public int getCost() {
+        return Cost;
+    }
+
+    public void setCost(int cost) {
+        Cost = cost;
+    }
 
     public String getState() {
         return State;

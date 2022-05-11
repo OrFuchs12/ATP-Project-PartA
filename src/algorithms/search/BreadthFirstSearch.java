@@ -3,18 +3,17 @@ package algorithms.search;
 import java.util.ArrayList;
 
 public class BreadthFirstSearch extends ASearchingAlgorithm {
+    public BreadthFirstSearch() {
+        super();
+    }
+
     @Override
     public Solution Solve(ISearchable problem) {
         AState curr= problem.GetStartState().getCopy();
 
         while (!curr.equals(problem.GetGoalState())) {
             ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
-            for (int i = 0; i < PStates.size(); i++) {
-                if (!PStates.get(i).isVisited()) {
-                    openList.add(PStates.get(i));
-                    PStates.get(i).setCameFrom(curr);
-                }
-            }
+            addToOpenList(curr,PStates);
             curr = PopOpenList();
         }
         Solution sol = new Solution();
@@ -24,6 +23,16 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         }
         sol.addToSolution(problem.GetStartState());
         return sol;
+    }
+    @Override
+    public void addToOpenList(AState curr, ArrayList<AState> pStates){
+        for (int i = 0; i < pStates.size(); i++) {
+            if (!pStates.get(i).isVisited()) {
+                openList.add(pStates.get(i));
+                pStates.get(i).setCameFrom(curr);
+            }
+        }
+
     }
 
 
