@@ -8,10 +8,10 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
     }
 
     @Override
-    public Solution Solve(ISearchable problem) {
+    public Solution solve(ISearchable problem) {
         AState curr= problem.GetStartState().getCopy();
 
-        while (!curr.equals(problem.GetGoalState())) {
+        while (!curr.compare_states(problem.GetGoalState())) {
             ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
             addToOpenList(curr,PStates);
             curr = PopOpenList();
@@ -35,6 +35,8 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
 
     }
 
-
-
+    @Override
+    public String getName() {
+        return "BreadthFirstSearch";
+    }
 }

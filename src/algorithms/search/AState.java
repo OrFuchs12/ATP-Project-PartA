@@ -43,4 +43,6 @@ public abstract class AState {
     public AState getCameFrom() {
         return CameFrom;
     }
+
+    public abstract boolean compare_states(AState other);
 }

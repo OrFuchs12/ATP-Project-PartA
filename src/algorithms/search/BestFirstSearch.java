@@ -19,12 +19,18 @@ public class BestFirstSearch extends BreadthFirstSearch {
 
         }
     }
+
+    @Override
+    public String getName() {
+        return "BestFirstSearch";
+    }
+
     protected PriorityQueue<AState> BestOpenList;
     public BestFirstSearch(){
         BestOpenList = new PriorityQueue<AState>(new theComperator());
     }
     @Override
-    public Solution Solve(ISearchable problem) {
+    public Solution solve(ISearchable problem) {
         AState curr= problem.GetStartState().getCopy();
 
         while (!curr.equals(problem.GetGoalState())) {

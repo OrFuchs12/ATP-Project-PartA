@@ -11,4 +11,9 @@ public class MazeState extends AState{
         AState copy = new MazeState(this.getState());
         return copy;
     }
+
+    @Override
+    public boolean compare_states(AState other) {
+        return (this.State.equals(other.State));
+    }
 }

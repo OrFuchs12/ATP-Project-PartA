@@ -1,5 +1,8 @@
 package algorithms.search;
 
 public interface ISearchingAlgorithm {
-     Solution Solve(ISearchable problem);
+     Solution solve(ISearchable problem);
+     String getName();
+
+     public int getNumberOfNodesEvaluated();
 }
