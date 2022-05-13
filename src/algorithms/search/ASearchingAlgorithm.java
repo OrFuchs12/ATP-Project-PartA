@@ -1,16 +1,13 @@
 package algorithms.search;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
     protected Queue<AState> openList;
     private int visitedNodes;
     public abstract Solution solve(ISearchable problem);
     public ASearchingAlgorithm(){
-        openList = new PriorityQueue<AState>();
+        openList = new LinkedList<AState>();
         visitedNodes = 0;
     }
 

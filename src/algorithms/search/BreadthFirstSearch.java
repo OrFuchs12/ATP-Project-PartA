@@ -17,7 +17,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
             curr = PopOpenList();
         }
         Solution sol = new Solution();
-        while (curr!= problem.GetStartState()){
+        while (!curr.compare_states(problem.GetStartState())){
             sol.addToSolution(curr);
             curr = curr.getCameFrom();
         }
