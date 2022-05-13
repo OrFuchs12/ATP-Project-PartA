@@ -47,7 +47,32 @@ public class MyMazeGenerator extends AMazeGenerator {
 //            Position curr = new Position(colRand,rowRand);
             Position curr = new Position(MyMaze.getStartPosition().getColumnIndex(),MyMaze.getStartPosition().getRowIndex());
             do {
-                all_neighbors.addAll(find_my_neighbors(curr, MyMaze));
+                //all_neighbors.addAll(find_my_neighbors(curr, MyMaze));
+                if (curr.getColumnIndex() + 2 < MyMaze.getColumns())
+                {
+                    if (MyMaze.getValue(curr.getColumnIndex()+2,curr.getRowIndex()) == 1) {
+                        all_neighbors.add(new Position(curr.getColumnIndex()+2, curr.getRowIndex()));
+                        all_neighbors.get(all_neighbors.size()-1).setFather(new Position(curr.getColumnIndex()+1, curr.getRowIndex()));
+                    }
+                }
+                if (curr.getColumnIndex() -2  >= 0)
+                {
+                    if (MyMaze.getValue(curr.getColumnIndex()-2,curr.getRowIndex()) == 1) {
+                        all_neighbors.add(new Position(curr.getColumnIndex()-2, curr.getRowIndex()));
+                        all_neighbors.get(all_neighbors.size()-1).setFather(new Position(curr.getColumnIndex()-1, curr.getRowIndex()));}
+                }
+                if (curr.getRowIndex() + 2 < MyMaze.getRows())
+                {
+                    if (MyMaze.getValue(curr.getColumnIndex(),curr.getRowIndex()+2) == 1) {
+                        all_neighbors.add(new Position(curr.getColumnIndex(), curr.getRowIndex() +2));
+                        all_neighbors.get(all_neighbors.size()-1).setFather(new Position(curr.getColumnIndex(), curr.getRowIndex()+1));}
+                }
+                if (curr.getRowIndex() - 2 >= 0)
+                {
+                    if (MyMaze.getValue(curr.getColumnIndex(),curr.getRowIndex()-2) == 1) {
+                        all_neighbors.add(new Position(curr.getColumnIndex(), curr.getRowIndex() -2));
+                        all_neighbors.get(all_neighbors.size()-1).setFather(new Position(curr.getColumnIndex(), curr.getRowIndex()-1));}
+                }
                 Collections.shuffle(all_neighbors);
                 curr = all_neighbors.remove(0);
                 MyMaze.setPosition(curr, 0);

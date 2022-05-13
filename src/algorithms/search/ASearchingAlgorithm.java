@@ -8,7 +8,7 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
     private ArrayList<AState> visited;
     public abstract Solution solve(ISearchable problem);
     public ASearchingAlgorithm(){
-        openList = new PriorityQueue<AState>(new theComparator());
+        openList = new LinkedList<AState>();
         visitedNodes = 0;
         visited = new ArrayList<>();
     }
@@ -25,12 +25,23 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
 
     @Override
     public int getNumberOfNodesEvaluated() {
-        return visitedNodes;
+        return visited.size();
     }
 
     public ArrayList<AState> getVisited() {
         return visited;
     }
+    public boolean isInVisited(AState other) {
+        for (int i = 0; i < visited.size(); i++)
+        {
+            if (visited.get(i).compare_state(other) == true)
+            {
+                return true;
+            }
+         }
+    return false;
+    }
+
 
     public AState PopOpenList(){
         ///visitedNodes++;
@@ -40,9 +51,9 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
         return next;
     }
 
-    public void setVisited(AState visited) {
-        this.visited.add(visited);
-    }
+//    public void setVisited(AState visited) {
+//        this.visited.add(visited);
+//    }
 
     public void addVisitedNode()
     {

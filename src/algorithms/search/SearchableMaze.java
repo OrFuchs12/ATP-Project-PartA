@@ -71,7 +71,7 @@ public class SearchableMaze  implements ISearchable {
         }
         //4
         if (colIndex+1 < maze.getColumns() && rowIndex+1 < maze.getRows() && maze.getValue(colIndex +1 , rowIndex+1) == 0){
-            AState fourAndHalf = new MazeState(colIndex, rowIndex+1);
+            AState fourAndHalf = new MazeState(colIndex+1, rowIndex+1);
             fourAndHalf.setCost(15);
             pStates.add(fourAndHalf);
         }

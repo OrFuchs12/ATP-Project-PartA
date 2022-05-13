@@ -4,7 +4,7 @@ public abstract class AState {
     protected String State;
     private int Cost;
     private AState CameFrom;
-    private boolean isVisited;
+    //private boolean isVisited;
 
 
     public int getCost() {
@@ -19,14 +19,14 @@ public abstract class AState {
         return State;
     }
 
-    public abstract AState getCopy();
-    public void setVisited(){
-        isVisited = true;
-    }
+    //public abstract AState getCopy();
+    //public void setVisited(){
+     //   isVisited = true;
+    //}
 
-    public boolean isVisited() {
-        return isVisited;
-    }
+    //public boolean isVisited() {
+    //    return isVisited;
+    //}
 
 
 //    public boolean equals(Object o){
@@ -41,7 +41,10 @@ public abstract class AState {
 //            return state1.equals(state1);}
 //    }
 
-    public abstract boolean equals(AState other);
+    public boolean compare_state(AState other)
+    {
+        return this.compare_state(other);
+    }
 
     public void setCameFrom(AState cameFrom) {
         CameFrom = cameFrom;
