@@ -27,14 +27,21 @@ public abstract class AState {
     public boolean isVisited() {
         return isVisited;
     }
-    public boolean equals(Object o){
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        AState state1 = (AState) o;
-        return state1!=null? state1.State.equals(state1.State):state1.State ==null;
-    }
+
+
+//    public boolean equals(Object o){
+//        if (this == o)
+//            return true;
+//        if (o == null || getClass() != o.getClass())
+//            return false;
+//        AState state1 = (AState) o;
+//        if (state1 == null){
+//            return false;}
+//        else{
+//            return state1.equals(state1);}
+//    }
+
+    public abstract boolean equals(AState other);
 
     public void setCameFrom(AState cameFrom) {
         CameFrom = cameFrom;
@@ -44,11 +51,11 @@ public abstract class AState {
         return CameFrom;
     }
 
-    public abstract boolean compare_states(AState other);
+    //public abstract boolean compare_states(AState other);
 
     @Override
     public String toString() {
-        return "AState{" +
+        return "{" +
                  State + '\'' +
                 '}';
     }

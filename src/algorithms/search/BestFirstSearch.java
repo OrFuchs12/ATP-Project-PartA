@@ -32,6 +32,7 @@ public class BestFirstSearch extends BreadthFirstSearch {
     @Override
     public Solution solve(ISearchable problem) {
         AState curr= problem.GetStartState().getCopy();
+        curr.setVisited();
 
         while (!curr.equals(problem.GetGoalState())) {
             ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
@@ -46,6 +47,15 @@ public class BestFirstSearch extends BreadthFirstSearch {
         sol.addToSolution(problem.GetStartState());
         return sol;
     }
+
+    @Override
+    public AState PopOpenList() {
+        addVisitedNode();
+        AState next = BestOpenList.poll();
+        next.setVisited();
+        return next;
+    }
+
     public void addToOpenList(AState curr, ArrayList<AState> pStates){
         for (int i = 0; i < pStates.size(); i++) {
             if (!pStates.get(i).isVisited()) {
