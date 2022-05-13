@@ -10,6 +10,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
     @Override
     public Solution solve(ISearchable problem) {
         AState curr= problem.GetStartState().getCopy();
+        curr.setVisited();
 
         while (!curr.compare_states(problem.GetGoalState())) {
             ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);

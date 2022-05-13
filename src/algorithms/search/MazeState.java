@@ -16,4 +16,6 @@ public class MazeState extends AState{
     public boolean compare_states(AState other) {
         return (this.State.equals(other.State));
     }
+
+
 }

@@ -16,7 +16,7 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
 
     @Override
     public int getNumberOfNodesEvaluated() {
-        return 0;
+        return visitedNodes;
     }
 
     public AState PopOpenList(){

@@ -11,12 +11,14 @@ public class Solution {
         solution.add(0,state);
     }
 
-    public ArrayList<AState> getSolution() {
-        return solution;
-    }
+    //public ArrayList<AState> getSolution() {
+     //   return solution;
+    //}
 
     public ArrayList<AState> getSolutionPath()
     {
         return solution;
     }
+
+
 }

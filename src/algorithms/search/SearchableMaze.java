@@ -23,7 +23,7 @@ public class SearchableMaze  implements ISearchable {
     @Override
     public AState GetStartState() {
         Position startP = maze.getStartPosition();
-        String State = stateString(startP.getRowIndex(),startP.getColumnIndex());
+        String State = stateString(startP.getColumnIndex(),startP.getRowIndex());
         AState state = new MazeState(State);
         return state;
     }
@@ -31,7 +31,7 @@ public class SearchableMaze  implements ISearchable {
     @Override
     public AState GetGoalState() {
         Position goalP = maze.getGoalPosition();
-        String State = stateString(goalP.getRowIndex(),goalP.getColumnIndex());
+        String State = stateString(goalP.getColumnIndex(),goalP.getRowIndex());
         AState state = new MazeState(State);
         return state;
     }
@@ -47,48 +47,58 @@ public class SearchableMaze  implements ISearchable {
         int rowIndex = Integer.parseInt(RowsI);
         int colIndex = Integer.parseInt(ColI);
         Position curr = new Position(colIndex, rowIndex);
+        //1
         if (rowIndex-1 >= 0 && maze.getValue(colIndex, rowIndex-1) == 0){
             String s1 = stateString(colIndex,rowIndex -1);
             AState twelve = new MazeState(s1);
             twelve.setCost(10);
             pStates.add(twelve);
         }
+        ////2
         if (rowIndex-1 >=0 && colIndex+1 < maze.getColumns() && maze.getValue(colIndex +1 , rowIndex-1) == 0){
             String s1 = stateString(colIndex +1,rowIndex -1);
             AState oneAndHalf = new MazeState(s1);
             oneAndHalf.setCost(15);
             pStates.add(oneAndHalf);
         }
+        //3
         if (colIndex+1 < maze.getColumns() && maze.getValue(colIndex +1 , rowIndex) == 0){
             String s1 = stateString(colIndex +1,rowIndex );
             AState three = new MazeState(s1);
             three.setCost(10);
             pStates.add(three);
         }
+        //4
         if (colIndex+1 < maze.getColumns() && rowIndex+1 < maze.getRows() && maze.getValue(colIndex +1 , rowIndex+1) == 0){
             String s1 = stateString(colIndex +1,rowIndex +1);
             AState fourAndHalf = new MazeState(s1);
             fourAndHalf.setCost(15);
             pStates.add(fourAndHalf);
         }
+        //5
         if (rowIndex+1 < maze.getRows() && maze.getValue(colIndex  , rowIndex +1 ) == 0){
             String s1 = stateString(colIndex ,rowIndex+1 );
             AState six = new MazeState(s1);
             six.setCost(10);
             pStates.add(six);
         }
+       //6
         if (colIndex-1 >=0 && rowIndex+1 < maze.getRows() && maze.getValue(colIndex -1 , rowIndex+1) == 0){
             String s1 = stateString(colIndex -1,rowIndex +1);
             AState sevenAndHalf = new MazeState(s1);
             sevenAndHalf.setCost(15);
             pStates.add(sevenAndHalf);
         }
+
+        //7
         if (colIndex -1 >=0 && maze.getValue(colIndex -1 , rowIndex) == 0){
             String s1 = stateString(colIndex-1 ,rowIndex );
             AState nine = new MazeState(s1);
             nine.setCost(10);
             pStates.add(nine);
         }
+
+        ////8
         if (colIndex-1 >= 0 && rowIndex-1>=0 && maze.getValue(colIndex -1 , rowIndex-1) == 0){
             String s1 = stateString(colIndex -1,rowIndex -1);
             AState tenAndHalf = new MazeState(s1);
@@ -101,7 +111,7 @@ public class SearchableMaze  implements ISearchable {
     /*
      returns a string of the state we crate
      */
-    private String stateString(int row, int col){
+    private String stateString(int col, int row){
         return  "RowIndex: " + row + " ColIndex: " + col;
     }
 }

@@ -45,4 +45,11 @@ public abstract class AState {
     }
 
     public abstract boolean compare_states(AState other);
+
+    @Override
+    public String toString() {
+        return "AState{" +
+                 State + '\'' +
+                '}';
+    }
 }
