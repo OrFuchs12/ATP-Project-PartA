@@ -34,7 +34,7 @@ public class BestFirstSearch extends BreadthFirstSearch {
         AState curr= problem.GetStartState();//.getCopy();
         getVisited().add(curr);
 
-        while (!curr.compare_state(problem.GetGoalState())) {
+        while (!curr.equals(problem.GetGoalState())) {
             ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
             addToOpenList(curr,PStates);
             curr = PopOpenList();

@@ -34,7 +34,7 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
     public boolean isInVisited(AState other) {
         for (int i = 0; i < visited.size(); i++)
         {
-            if (visited.get(i).compare_state(other) == true)
+            if (visited.get(i).equals(other))
             {
                 return true;
             }
@@ -47,7 +47,8 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
         ///visitedNodes++;
         AState next = openList.poll();
         //next.setVisited();
-        visited.add(next);
+        if (!isInVisited(next)){
+            visited.add(next);}
         return next;
     }
 

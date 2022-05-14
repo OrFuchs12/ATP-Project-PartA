@@ -41,10 +41,12 @@ public abstract class AState {
 //            return state1.equals(state1);}
 //    }
 
-    public boolean compare_state(AState other)
-    {
-        return this.compare_state(other);
-    }
+//    public boolean compare_state(AState other)
+//    {
+//        return this.compare_state(other);
+//    }
+
+    public abstract boolean equals(Object o);
 
     public void setCameFrom(AState cameFrom) {
         CameFrom = cameFrom;

@@ -14,13 +14,13 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         AState curr= problem.GetStartState();//.getCopy();
         getVisited().add(curr);
 
-        while (!curr.compare_state(problem.GetGoalState())) {
+        while (!curr.equals(problem.GetGoalState())) {
             ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
             addToOpenList(curr,PStates);
             curr = PopOpenList();
         }
         Solution sol = new Solution();
-        while (!curr.compare_state(problem.GetStartState())){
+        while (!curr.equals(problem.GetStartState())){
             sol.addToSolution(curr);
             curr = curr.getCameFrom();
         }
@@ -30,7 +30,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
     @Override
     public void addToOpenList(AState curr, ArrayList<AState> pStates){
         for (int i = 0; i < pStates.size(); i++) {
-            if (!isInVisited(pStates.get(i))) {
+            if (!isInVisited(pStates.get(i)) && ! openList.contains(pStates.get(i))) {
                 openList.add(pStates.get(i));
                 pStates.get(i).setCameFrom(curr);
             }
