@@ -103,9 +103,9 @@ public class Position {
     /**
      * mixes the list of fathers
      */
-    public void MixFather() {
-        Collections.shuffle(father);
-    }
+//    public void MixFather() {
+//        Collections.shuffle(father);
+//    }
 
     /**
      *
