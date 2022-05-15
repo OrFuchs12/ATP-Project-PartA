@@ -11,12 +11,21 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
 
     @Override
     public Solution solve(ISearchable problem) {
-        AState curr= problem.GetStartState().getCopy();
+
+        //AState curr= problem.GetStartState().getCopy();
+        AState curr= problem.GetStartState();
         getVisited().add(curr);
 
         while (!curr.equals(problem.GetGoalState())) {
-            ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
-            addToOpenList(curr,PStates);
+            ArrayList<AState> pStates = problem.GetAllPossibleStates(curr);
+//            addToOpenList(curr,PStates);
+
+            for (int i = 0; i < pStates.size(); i++) {
+                if (!isInVisited(pStates.get(i)) && ! openList.contains(pStates.get(i))) {
+                    openList.add(pStates.get(i));
+                    pStates.get(i).setCameFrom(curr);
+                }
+            }
             curr = PopOpenList();
         }
         Solution sol = new Solution();
@@ -27,18 +36,18 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         sol.addToSolution(problem.GetStartState());
         return sol;
     }
-    @Override
-    public void addToOpenList(AState curr, ArrayList<AState> pStates){
-        for (int i = 0; i < pStates.size(); i++) {
-            if (!isInVisited(pStates.get(i)) && ! openList.contains(pStates.get(i))) {
-                openList.add(pStates.get(i));
-                pStates.get(i).setCameFrom(curr);
-            }
-        }
+//    @Override
+//    public void addToOpenList(AState curr, ArrayList<AState> pStates){
+//        for (int i = 0; i < pStates.size(); i++) {
+//            if (!isInVisited(pStates.get(i)) && ! openList.contains(pStates.get(i))) {
+//                openList.add(pStates.get(i));
+//                pStates.get(i).setCameFrom(curr);
+//            }
+//        }
 
 
 
-    }
+//  }
 
 
 

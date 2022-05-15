@@ -60,5 +60,5 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
     {
         visitedNodes++;
     }
-    public abstract void addToOpenList(AState curr, ArrayList<AState> pStates);
+//    public abstract void addToOpenList(AState curr, ArrayList<AState> pStates);
 }

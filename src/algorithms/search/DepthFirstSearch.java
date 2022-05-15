@@ -8,10 +8,10 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         return null;
     }
 
-    @Override
-    public void addToOpenList(AState curr, ArrayList<AState> pStates) {
+//    @Override
+//    public void addToOpenList(AState curr, ArrayList<AState> pStates) {
 
-    }
+//    }
 
     @Override
     public String getName() {

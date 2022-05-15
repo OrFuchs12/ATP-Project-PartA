@@ -85,8 +85,10 @@ public class MyMazeGenerator extends AMazeGenerator {
                         }
                     }
                 }
-                Collections.shuffle(all_neighbors);
-                curr = all_neighbors.remove(0);
+//                Collections.shuffle(all_neighbors);
+                Random rand = new Random();
+                int rand_neighbor = rand.nextInt(all_neighbors.size());
+                curr = all_neighbors.remove(rand_neighbor);
                 MyMaze.setPosition(curr, 0);
                 if (curr.getColumnIndex() +2 < columns && MyMaze.getValue(curr.getColumnIndex()+2, curr.getRowIndex()) == 0)
                 {
