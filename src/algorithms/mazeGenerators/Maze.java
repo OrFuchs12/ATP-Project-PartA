@@ -269,7 +269,7 @@ public class Maze {
                 System.out.print("[");
                 for (int j=0; j<GoalPosition.getColumnIndex(); j++)
                 {
-                    System.out.printf(getValue(j,i)+ ", ");
+                    System.out.print(getValue(j,i)+ ", ");
                 }
                 System.out.print("E");
                 for (int j=GoalPosition.getColumnIndex()+1; j<columns;j++)

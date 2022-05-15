@@ -19,54 +19,54 @@ public class BestFirstSearch extends BreadthFirstSearch {
         }
     }
 
-    @Override
-    public String getName() {
-        return "BestFirstSearch";
-    }
-
-    protected PriorityQueue<AState> BestOpenList;
-    public BestFirstSearch(){
-        BestOpenList = new PriorityQueue<AState>(new theComperator());
-    }
-    @Override
-    public Solution solve(ISearchable problem) {
-        AState curr= problem.GetStartState().getCopy();
-        getVisited().add(curr);
-
-        while (!curr.equals(problem.GetGoalState())) {
-            ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
-            addToOpenList(curr,PStates);
-            curr = PopOpenList();
-        }
-        Solution sol = new Solution();
-        while (!curr.equals(problem.GetStartState())){
-            sol.addToSolution(curr);
-            curr = curr.getCameFrom();
-        }
-        sol.addToSolution(problem.GetStartState());
-        return sol;
-    }
-
-    @Override
-    public AState PopOpenList() {
-        addVisitedNode();
-        AState next = BestOpenList.poll();
-        if (!isInVisited(next)) {
-            getVisited().add(next);
-        }
-        return next;
-    }
-
-    public void addToOpenList(AState curr, ArrayList<AState> pStates){
-        for (int i = 0; i < pStates.size(); i++) {
-            if (!isInVisited(pStates.get(i)) && !BestOpenList.contains((pStates.get(i)))) {
-                BestOpenList.add(pStates.get(i));
-                pStates.get(i).setCameFrom(curr);
-            }
-        }
-
-    }
-
+//    @Override
+//    public String getName() {
+//        return "BestFirstSearch";
+//    }
+//
+//    protected PriorityQueue<AState> BestOpenList;
+//    public BestFirstSearch(){
+//        BestOpenList = new PriorityQueue<AState>(new theComperator());
+//    }
+//    @Override
+//    public Solution solve(ISearchable problem) {
+//        AState curr= problem.GetStartState().getCopy();
+//        getVisited().add(curr);
+//
+//        while (!curr.equals(problem.GetGoalState())) {
+//            ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
+//            addToOpenList(curr,PStates);
+//            curr = PopOpenList();
+//        }
+//        Solution sol = new Solution();
+//        while (!curr.equals(problem.GetStartState())){
+//            sol.addToSolution(curr);
+//            curr = curr.getCameFrom();
+//        }
+//        sol.addToSolution(problem.GetStartState());
+//        return sol;
+//    }
+//
+//    @Override
+//    public AState PopOpenList() {
+//        addVisitedNode();
+//        AState next = BestOpenList.poll();
+////        if (!isInVisited(next)) {
+////            getVisited().add(next);
+////        }
+//        return next;
+//    }
+////todo write this
+////    public void addToOpenList(AState curr, ArrayList<AState> pStates){
+////        for (int i = 0; i < pStates.size(); i++) {
+////            if (//!problem(pStates.get(i)) && !BestOpenList.contains((pStates.get(i)))) {
+////                BestOpenList.add(pStates.get(i));
+////                pStates.get(i).setCameFrom(curr);
+////            }
+////        }
+////
+////    }
+//
 
 
 }
