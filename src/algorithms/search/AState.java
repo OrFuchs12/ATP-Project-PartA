@@ -19,10 +19,10 @@ public abstract class AState {
         return State;
     }
 
-    //public abstract AState getCopy();
-    //public void setVisited(){
-     //   isVisited = true;
-    //}
+    public abstract AState getCopy();
+//    public void setVisited(){
+//        isVisited = true;
+//    }
 
     //public boolean isVisited() {
     //    return isVisited;

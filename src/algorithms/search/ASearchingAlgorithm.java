@@ -13,12 +13,12 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
         visited = new ArrayList<>();
     }
 
-    class theComparator implements Comparator<AState> {
-        public int compare(AState state1, AState state2)
-        {
-            return 1;
-        }
-    }
+//    class theComparator implements Comparator<AState> {
+//        public int compare(AState state1, AState state2)
+//        {
+//            return 1;
+//        }
+//    }
 
     @Override
     public abstract String getName();

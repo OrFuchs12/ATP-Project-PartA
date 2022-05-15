@@ -29,8 +29,7 @@ public class MyMazeGenerator extends AMazeGenerator {
         MyMaze.setPosition(MyMaze.getStartPosition(),0);
         if (rows == 2 && columns == 2)
         {
-            if (MyMaze.getStartPosition().getColumnIndex() != MyMaze.getGoalPosition().getColumnIndex() &&
-            MyMaze.getStartPosition().getRowIndex() != MyMaze.getGoalPosition().getRowIndex())
+            if (!MyMaze.getStartPosition().equals(MyMaze.getGoalPosition()))
             {
                 Random rand = new Random();
                 int rand_point = rand.nextInt(2);
@@ -51,55 +50,84 @@ public class MyMazeGenerator extends AMazeGenerator {
                 if (curr.getColumnIndex() + 2 < MyMaze.getColumns())
                 {
                     if (MyMaze.getValue(curr.getColumnIndex()+2,curr.getRowIndex()) == 1) {
-                        all_neighbors.add(new Position(curr.getColumnIndex()+2, curr.getRowIndex()));
-                        all_neighbors.get(all_neighbors.size()-1).setFather(new Position(curr.getColumnIndex()+1, curr.getRowIndex()));
+                        Position one = new Position(curr.getColumnIndex() + 2, curr.getRowIndex());
+                        if (!all_neighbors.contains(one)) {
+                            all_neighbors.add(one);
+                            all_neighbors.get(all_neighbors.size() - 1).setFather(new Position(curr.getColumnIndex() + 1, curr.getRowIndex()));
+                        }
                     }
                 }
-                if (curr.getColumnIndex() -2  >= 0)
-                {
-                    if (MyMaze.getValue(curr.getColumnIndex()-2,curr.getRowIndex()) == 1) {
-                        all_neighbors.add(new Position(curr.getColumnIndex()-2, curr.getRowIndex()));
-                        all_neighbors.get(all_neighbors.size()-1).setFather(new Position(curr.getColumnIndex()-1, curr.getRowIndex()));}
+                if (curr.getColumnIndex() -2  >= 0) {
+                    if (MyMaze.getValue(curr.getColumnIndex() - 2, curr.getRowIndex()) == 1) {
+                        Position two = new Position(curr.getColumnIndex() - 2, curr.getRowIndex());
+                        if (!all_neighbors.contains(two)) {
+                            all_neighbors.add(two);
+                            all_neighbors.get(all_neighbors.size() - 1).setFather(new Position(curr.getColumnIndex() - 1, curr.getRowIndex()));
+                        }
+                    }
                 }
                 if (curr.getRowIndex() + 2 < MyMaze.getRows())
                 {
                     if (MyMaze.getValue(curr.getColumnIndex(),curr.getRowIndex()+2) == 1) {
-                        all_neighbors.add(new Position(curr.getColumnIndex(), curr.getRowIndex() +2));
-                        all_neighbors.get(all_neighbors.size()-1).setFather(new Position(curr.getColumnIndex(), curr.getRowIndex()+1));}
+                        Position three = new Position(curr.getColumnIndex(), curr.getRowIndex() + 2);
+                        if (!all_neighbors.contains(three)) {
+                            all_neighbors.add(three);
+                            all_neighbors.get(all_neighbors.size() - 1).setFather(new Position(curr.getColumnIndex(), curr.getRowIndex() + 1));
+                        }
+                    }
                 }
-                if (curr.getRowIndex() - 2 >= 0)
-                {
-                    if (MyMaze.getValue(curr.getColumnIndex(),curr.getRowIndex()-2) == 1) {
-                        all_neighbors.add(new Position(curr.getColumnIndex(), curr.getRowIndex() -2));
-                        all_neighbors.get(all_neighbors.size()-1).setFather(new Position(curr.getColumnIndex(), curr.getRowIndex()-1));}
+                if (curr.getRowIndex() - 2 >= 0) {
+                    if (MyMaze.getValue(curr.getColumnIndex(), curr.getRowIndex() - 2) == 1) {
+                        Position four = new Position(curr.getColumnIndex(), curr.getRowIndex() - 2);
+                        if (!all_neighbors.contains(four)) {
+                            all_neighbors.add(four);
+                            all_neighbors.get(all_neighbors.size() - 1).setFather(new Position(curr.getColumnIndex(), curr.getRowIndex() - 1));
+                        }
+                    }
                 }
                 Collections.shuffle(all_neighbors);
                 curr = all_neighbors.remove(0);
                 MyMaze.setPosition(curr, 0);
                 if (curr.getColumnIndex() +2 < columns && MyMaze.getValue(curr.getColumnIndex()+2, curr.getRowIndex()) == 0)
                 {
-                    curr.setFather(new Position(curr.getColumnIndex()+1, curr.getRowIndex()));
+                    Position father1 = new Position(curr.getColumnIndex()+1, curr.getRowIndex());
+                    if (!curr.getFather().contains(father1)) {
+                        curr.setFather(father1);}
                 }
                 if (curr.getColumnIndex() -2 >= 0 && MyMaze.getValue(curr.getColumnIndex()-2, curr.getRowIndex()) == 0)
                 {
-                    curr.setFather(new Position(curr.getColumnIndex()-1, curr.getRowIndex()));
+                    Position father2= new Position(curr.getColumnIndex()-1, curr.getRowIndex());
+                    if (!curr.getFather().contains(father2))
+                    {
+                        curr.setFather(father2);
+                    }
+
                 }
                 if (curr.getRowIndex() +2 < rows && MyMaze.getValue(curr.getColumnIndex(), curr.getRowIndex()+2) == 0)
                 {
-                    curr.setFather(new Position(curr.getColumnIndex(), curr.getRowIndex()+1));
+                    Position father3= new Position(curr.getColumnIndex(), curr.getRowIndex()+1);
+                    if (!curr.getFather().contains(father3)) {
+                        curr.setFather(father3);
+                    }
                 }
                 if (curr.getRowIndex() -2 >=0 && MyMaze.getValue(curr.getColumnIndex(), curr.getRowIndex()-2) == 0)
                 {
-                    curr.setFather(new Position(curr.getColumnIndex(), curr.getRowIndex()-1));
+                    Position father4= new Position(curr.getColumnIndex(), curr.getRowIndex()-1);
+                    if(!curr.getFather().contains(father4)){
+                    curr.setFather(father4);}
                 }
                 curr.MixFather();
                 MyMaze.setPosition(curr.getFather().get(0), 0);
-            }
-            while (!all_neighbors.isEmpty());
-            if (MyMaze.getValue(MyMaze.getGoalPosition()) == 1) {
+            } while (!all_neighbors.isEmpty());
+            if (MyMaze.getValue(MyMaze.getGoalPosition()) == 1)
+            {
                 ArrayList<Position> frame = MyMaze.getFrame();
-                for (int i = 2; i < frame.size(); i++) {
-                    if (MyMaze.getValue(frame.get(i)) == 0) {
+
+                //todo: changed i to start from 0
+                for (int i = 0; i < frame.size(); i++)
+                {
+                    if (MyMaze.getValue(frame.get(i)) == 0 && !frame.get(i).equals(MyMaze.getStartPosition()))
+                    {
                         MyMaze.setGoalPosition(frame.get(i));
                         break;
                     }

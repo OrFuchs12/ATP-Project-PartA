@@ -19,11 +19,11 @@ public class MazeState extends AState{
         return col;
     }
 
-//    @Override
-//    public AState getCopy() {
-//        AState copy = new MazeState(this.getCol(), this.getRow());
-//        return copy;
-//    }
+    @Override
+    public AState getCopy() {
+        AState copy = new MazeState(this.getCol(), this.getRow());
+        return copy;
+    }
 
 //    @Override
 //    public boolean compare_state(AState other) {

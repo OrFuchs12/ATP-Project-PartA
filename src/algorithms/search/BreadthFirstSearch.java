@@ -11,7 +11,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
 
     @Override
     public Solution solve(ISearchable problem) {
-        AState curr= problem.GetStartState();//.getCopy();
+        AState curr= problem.GetStartState().getCopy();
         getVisited().add(curr);
 
         while (!curr.equals(problem.GetGoalState())) {

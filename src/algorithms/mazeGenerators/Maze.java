@@ -2,6 +2,7 @@ package algorithms.mazeGenerators;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 
 /**
@@ -82,7 +83,8 @@ public class Maze {
      */
     public void setStartPosition(Position startPosition) {
         if (Frame.contains(startPosition)){
-            StartPosition = startPosition;}
+            StartPosition = startPosition;
+            setPosition(startPosition, 0);}
     }
 
     /**
@@ -101,7 +103,8 @@ public class Maze {
      */
     public void setGoalPosition(Position goalPosition) {
         if(Frame.contains(goalPosition)){
-        GoalPosition = goalPosition;}
+        GoalPosition = goalPosition;
+        setPosition(GoalPosition,0);}
     }
 
 
@@ -149,9 +152,16 @@ public class Maze {
             }
         }
 
-        Collections.shuffle(Frame);
-        StartPosition = Frame.get(0);
-        GoalPosition = Frame.get(1);
+        //Collections.shuffle(Frame);
+        Random rand = new Random();
+        int frame_rand1 = rand.nextInt(frame_size);
+        int frame_rand2 = rand.nextInt(frame_size);
+        while (frame_rand2 == frame_rand1)
+        {
+          frame_rand2 =rand.nextInt(frame_size);
+        }
+        StartPosition = Frame.get(frame_rand1);
+        GoalPosition = Frame.get(frame_rand2);
 
 
     }
@@ -204,6 +214,7 @@ public class Maze {
                 else{
                      first = GoalPosition.getColumnIndex();
                      second = StartPosition.getColumnIndex();
+                     firststart = false;
                 }
                 System.out.print("[");
                 for (int j=0; j<first; j++){

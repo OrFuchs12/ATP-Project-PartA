@@ -21,6 +21,18 @@ public class Position {
         return ColumnIndex;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o.getClass() == this.getClass())
+        {
+            Position other = (Position)o;
+            if(other.getColumnIndex() == ColumnIndex && other.getRowIndex() == RowIndex){
+                return true;}
+            return false;
+        }
+        return false;
+    }
     /**
      *
      * @return row index
