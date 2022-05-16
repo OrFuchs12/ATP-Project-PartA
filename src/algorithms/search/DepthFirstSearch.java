@@ -6,12 +6,16 @@ import java.util.Stack;
 
 public class DepthFirstSearch extends ASearchingAlgorithm{
     protected Stack<AState> DepthOpenList;
-    public DepthFirstSearch(){
+
+    public DepthFirstSearch()
+    {
         DepthOpenList = new Stack<AState>();
     }
+
     @Override
     public Solution solve(ISearchable problem)
     {
+        problem.cleanVisited();
         AState curr;
         DepthOpenList.add(problem.GetStartState());
         while (!DepthOpenList.isEmpty())
@@ -45,8 +49,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         }
         return null;
     }
-
-
 
     @Override
     public String getName() {

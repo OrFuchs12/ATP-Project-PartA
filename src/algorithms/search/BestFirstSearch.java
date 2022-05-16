@@ -7,7 +7,9 @@ import java.util.Queue;
 
 public class BestFirstSearch extends BreadthFirstSearch {
 
-    class theComperator implements Comparator<AState>{
+
+    class theComparator implements Comparator<AState>{
+        @Override
         public int compare(AState state1, AState state2)
         {
             AState st1 = state1;
@@ -20,17 +22,21 @@ public class BestFirstSearch extends BreadthFirstSearch {
     }
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return "BestFirstSearch";
     }
 
     protected PriorityQueue<AState> BestOpenList;
-    public BestFirstSearch(){
-        BestOpenList = new PriorityQueue<AState>(new theComperator());
+
+    public BestFirstSearch()
+    {
+        BestOpenList = new PriorityQueue<AState>(1, new theComparator());
     }
     @Override
     public Solution solve(ISearchable problem)
     {
+        problem.cleanVisited();
         AState curr;
         BestOpenList.add(problem.GetStartState());
         while (!BestOpenList.isEmpty())
@@ -64,45 +70,4 @@ public class BestFirstSearch extends BreadthFirstSearch {
         }
         return null;
     }
-//    @Override
-//    public Solution solve(ISearchable problem) {
-//        AState curr= problem.GetStartState().getCopy();
-//        getVisited().add(curr);
-//
-//        while (!curr.equals(problem.GetGoalState())) {
-//            ArrayList<AState> PStates = problem.GetAllPossibleStates(curr);
-//            addToOpenList(curr,PStates);
-//            curr = PopOpenList();
-//        }
-//        Solution sol = new Solution();
-//        while (!curr.equals(problem.GetStartState())){
-//            sol.addToSolution(curr);
-//            curr = curr.getCameFrom();
-//        }
-//        sol.addToSolution(problem.GetStartState());
-//        return sol;
-//    }
-//
-//    @Override
-//    public AState PopOpenList() {
-//        addVisitedNode();
-//        AState next = BestOpenList.poll();
-////        if (!isInVisited(next)) {
-////            getVisited().add(next);
-////        }
-//        return next;
-//    }
-////todo write this
-////    public void addToOpenList(AState curr, ArrayList<AState> pStates){
-////        for (int i = 0; i < pStates.size(); i++) {
-////            if (//!problem(pStates.get(i)) && !BestOpenList.contains((pStates.get(i)))) {
-////                BestOpenList.add(pStates.get(i));
-////                pStates.get(i).setCameFrom(curr);
-////            }
-////        }
-////
-////    }
-//
-
-
 }

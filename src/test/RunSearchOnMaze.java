@@ -1,31 +1,25 @@
+
 package test;
-import algorithms.mazeGenerators.*;
+import algorithms.mazeGenerators.IMazeGenerator;
+import algorithms.mazeGenerators.Maze;
+import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.search.*;
 import java.util.ArrayList;
 
 public class RunSearchOnMaze {
     public static void main(String[] args) {
         IMazeGenerator mg = new MyMazeGenerator();
-        Maze maze = mg.generate(1000, 1000);
-
-
-        //maze.print();
-        System.out.println(maze.getStartPosition());
-        System.out.println(maze.getGoalPosition());
-
-
+        Maze maze = mg.generate(10, 10);
+        maze.print();
         SearchableMaze searchableMaze = new SearchableMaze(maze);
         solveProblem(searchableMaze, new BreadthFirstSearch());
-        SearchableMaze searchableMaze1 = new SearchableMaze(maze);
-        solveProblem(searchableMaze1, new DepthFirstSearch());
-        SearchableMaze searchableMaze2 = new SearchableMaze(maze);
-        solveProblem(searchableMaze2, new BestFirstSearch());
+        solveProblem(searchableMaze, new DepthFirstSearch());
+        solveProblem(searchableMaze, new BestFirstSearch());
     }
-    private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher) {
+    private static void solveProblem(ISearchable domain, ISearchingAlgorithm
+            searcher) {
 //Solve a searching problem with a searcher
         Solution solution = searcher.solve(domain);
-
-
         System.out.println(String.format("'%s' algorithm - nodes evaluated: %s", searcher.getName(), searcher.getNumberOfNodesEvaluated()));
 //Printing Solution Path
                 System.out.println("Solution path:");
@@ -35,3 +29,4 @@ public class RunSearchOnMaze {
         }
     }
 }
+

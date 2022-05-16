@@ -8,10 +8,10 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         super();
     }
 
-
     @Override
     public Solution solve(ISearchable problem)
     {
+        problem.cleanVisited();
         AState curr;
         openList.add(problem.GetStartState());
         while (!openList.isEmpty())
@@ -45,11 +45,6 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         }
         return null;
     }
-
-
-
-
-
 
     @Override
     public String getName() {
