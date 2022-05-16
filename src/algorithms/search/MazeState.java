@@ -1,11 +1,13 @@
 package algorithms.search;
 
+import java.util.ArrayList;
+
 public class MazeState extends AState{
     private int row;
     private int col;
 
     public MazeState(int col, int row) {
-        this.State = null;
+        this.State = "Rows: " + row+ " Col: " + col;
         this.row= row;
         this.col =col;
 
@@ -50,6 +52,8 @@ public class MazeState extends AState{
         }
         return false;
     }
+
+
 
 
     @Override

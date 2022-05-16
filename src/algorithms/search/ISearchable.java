@@ -7,6 +7,9 @@ public interface ISearchable {
     AState GetStartState();
     AState GetGoalState();
     ArrayList<AState> GetAllPossibleStates(AState state);
-    ArrayList<AState> getVisited();
+    boolean[][] getVisited();
+    public Solution makeSol(AState stare);
+    public boolean isVisited(AState state);
+    public void addVisited(AState state);
 
 }

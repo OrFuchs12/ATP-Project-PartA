@@ -1,5 +1,7 @@
 package algorithms.search;
 
+import java.util.ArrayList;
+
 public abstract class AState {
     protected String State;
     private int Cost;
@@ -19,6 +21,8 @@ public abstract class AState {
         return State;
     }
 
+
+
     public abstract AState getCopy();
 //    public void setVisited(){
 //        isVisited = true;
@@ -27,7 +31,6 @@ public abstract class AState {
     //public boolean isVisited() {
     //    return isVisited;
     //}
-
 
 //    public boolean equals(Object o){
 //        if (this == o)
