@@ -1,9 +1,6 @@
 package algorithms.search;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class BestFirstSearch extends BreadthFirstSearch {
 
@@ -54,13 +51,45 @@ public class BestFirstSearch extends BreadthFirstSearch {
             }
             else
             {
+                int mycost;
+                int othercost;
                 ArrayList<AState> pStates = problem.GetAllPossibleStates(curr);
-                for (int i = 0; i < pStates.size(); i++) {
-                    if (!BestOpenList.contains(pStates.get(i))) {
+                for (int i = 0; i < pStates.size(); i++)
+                {
+                    if (!BestOpenList.contains(pStates.get(i)))
+                    {
+                        mycost= pStates.get(i).getCost();
+                        pStates.get(i).setCost(curr.getCost()+mycost);
                         BestOpenList.add(pStates.get(i));
                         pStates.get(i).setCameFrom(curr);
                     }
-                    if (pStates.get(i).equals(problem.GetGoalState())) {
+                    else
+                    {
+                        boolean swap = false;
+                        mycost= pStates.get(i).getCost();
+                        pStates.get(i).setCost(curr.getCost()+mycost);
+                        List<AState> keys = new ArrayList<>();
+                        while(!BestOpenList.isEmpty() && !BestOpenList.peek().equals(pStates.get(i))) {
+                            keys.add(BestOpenList.poll());
+                        }
+                        othercost =BestOpenList.peek().getCost();
+                        if( mycost < othercost)
+                        {
+                            BestOpenList.poll();
+                            pStates.get(i).setCameFrom(curr);
+                            swap = true;
+                        }
+                        while (!keys.isEmpty())
+                        {
+                            BestOpenList.add(keys.remove(0));
+                        }
+                        if (swap == true)
+                        {
+                            BestOpenList.add(pStates.get(i));
+                        }
+                    }
+                    if (pStates.get(i).equals(problem.GetGoalState()))
+                    {
                         pStates.get(i).setCameFrom(curr);
                         Solution sol = problem.makeSol(pStates.get(i));
                         return sol;

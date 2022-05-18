@@ -1,15 +1,13 @@
 
 package test;
-import algorithms.mazeGenerators.IMazeGenerator;
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.MyMazeGenerator;
+import algorithms.mazeGenerators.*;
 import algorithms.search.*;
 import java.util.ArrayList;
 
 public class RunSearchOnMaze {
     public static void main(String[] args) {
-        IMazeGenerator mg = new MyMazeGenerator();
-        Maze maze = mg.generate(100, 100);
+        IMazeGenerator mg = new SimpleMazeGenerator();
+        Maze maze = mg.generate(4, 4);
         maze.print();
         SearchableMaze searchableMaze = new SearchableMaze(maze);
         solveProblem(searchableMaze, new BreadthFirstSearch());
@@ -27,6 +25,7 @@ public class RunSearchOnMaze {
         for (int i = 0; i < solutionPath.size(); i++) {
             System.out.println(String.format("%s. %s",i,solutionPath.get(i)));
         }
+        System.out.println(solution.getSolutionPath().get(solutionPath.size()-1).getCost());
     }
 }
 
