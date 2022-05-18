@@ -8,6 +8,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         super();
     }
 
+
     @Override
     public Solution solve(ISearchable problem)
     {

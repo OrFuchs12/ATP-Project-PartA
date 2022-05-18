@@ -89,12 +89,15 @@ public class SearchableMaze  implements ISearchable {
                 }
         }
         ////2
-        if (rowIndex-1 >=0 && colIndex+1 < maze.getColumns() && maze.getValue(colIndex +1 , rowIndex-1) == 0){
+        if (rowIndex-1 >=0 && colIndex+1 < maze.getColumns() && maze.getValue(colIndex +1 , rowIndex-1) == 0 &&
+                (maze.getValue(colIndex + 1, rowIndex) == 0 || maze.getValue(colIndex, rowIndex - 1) == 0)){
             AState oneAndHalf = new MazeState(colIndex+1, rowIndex-1);
-            if (!visited[rowIndex-1][colIndex+1]){
-                oneAndHalf.setCost(15);
-                pStates.add(oneAndHalf);
+            if (!visited[rowIndex-1][colIndex+1]) {
+                {
+                    oneAndHalf.setCost(15);
+                    pStates.add(oneAndHalf);
                 }
+            }
         }
         //3
         if (colIndex+1 < maze.getColumns() && maze.getValue(colIndex +1 , rowIndex) == 0){
@@ -105,11 +108,14 @@ public class SearchableMaze  implements ISearchable {
                 }
         }
         //4
-        if (colIndex+1 < maze.getColumns() && rowIndex+1 < maze.getRows() && maze.getValue(colIndex +1 , rowIndex+1) == 0){
+        if (colIndex+1 < maze.getColumns() && rowIndex+1 < maze.getRows() && maze.getValue(colIndex +1 , rowIndex+1) == 0 &&
+                (maze.getValue(colIndex + 1, rowIndex) == 0 || maze.getValue(colIndex, rowIndex + 1) == 0)){
             AState fourAndHalf = new MazeState(colIndex+1, rowIndex+1);
-            if(!visited[rowIndex+1][colIndex+1]){
-            fourAndHalf.setCost(15);
-            pStates.add(fourAndHalf);
+            if(!visited[rowIndex+1][colIndex+1]) {
+                {
+                    fourAndHalf.setCost(15);
+                    pStates.add(fourAndHalf);
+                }
             }
         }
         //5
@@ -121,12 +127,15 @@ public class SearchableMaze  implements ISearchable {
             }
         }
        //6
-        if (colIndex-1 >=0 && rowIndex+1 < maze.getRows() && maze.getValue(colIndex -1 , rowIndex+1) == 0){
+        if (colIndex-1 >=0 && rowIndex+1 < maze.getRows() && maze.getValue(colIndex -1 , rowIndex+1) == 0 &&
+                (maze.getValue(colIndex , rowIndex+1) == 0 || maze.getValue(colIndex-1, rowIndex ) == 0)){
             AState sevenAndHalf = new MazeState(colIndex-1, rowIndex+1);
             if(!visited[rowIndex+1][colIndex-1]) {
-                sevenAndHalf.setCost(15);
-                pStates.add(sevenAndHalf);
+                {
+                    sevenAndHalf.setCost(15);
+                    pStates.add(sevenAndHalf);
                 }
+            }
         }
         //7
         if (colIndex -1 >=0 && maze.getValue(colIndex -1 , rowIndex) == 0){
@@ -138,12 +147,14 @@ public class SearchableMaze  implements ISearchable {
             }
         }
         ////8
-        if (colIndex-1 >= 0 && rowIndex-1>=0 && maze.getValue(colIndex -1 , rowIndex-1) == 0){
+        if (colIndex-1 >= 0 && rowIndex-1>=0 && maze.getValue(colIndex -1 , rowIndex-1) == 0 &&
+                (maze.getValue(colIndex - 1, rowIndex) == 0 || maze.getValue(colIndex, rowIndex - 1) == 0) ){
             AState tenAndHalf = new MazeState(colIndex-1, rowIndex-1);
-            if(!visited[rowIndex-1][colIndex-1])
-            {
-            tenAndHalf.setCost(15);
-            pStates.add(tenAndHalf);
+            if(!visited[rowIndex-1][colIndex-1]) {
+                {
+                    tenAndHalf.setCost(15);
+                    pStates.add(tenAndHalf);
+                }
             }
         }
         return pStates;
