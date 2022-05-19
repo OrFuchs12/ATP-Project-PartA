@@ -125,6 +125,7 @@ class BestFirstSearchTest {
         Solution sollbreadth= Breadth.solve((s_maze));
         long end1 = System.currentTimeMillis();
         assertTrue(end1-start1 <= 60000);
+        //checks that always Best has a smaller cost than Breadth
         assertTrue((solbest.getSolutionPath().get(solbest.getSolutionPath().size()-1).getCost()) <= sollbreadth.getTotal_cost());
     }
 

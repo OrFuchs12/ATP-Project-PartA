@@ -1,7 +1,10 @@
 package algorithms.search;
-
 import java.util.ArrayList;
 
+
+/**
+ * Interface of a searchable object. Includes getters of s
+ */
 public interface ISearchable {
     AState GetStartState();
     AState GetGoalState();
@@ -10,5 +13,4 @@ public interface ISearchable {
     boolean isVisited(AState state);
     void addVisited(AState state);
     void cleanVisited();
-
 }

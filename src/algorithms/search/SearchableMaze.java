@@ -1,25 +1,23 @@
 package algorithms.search;
-
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.Position;
+
 
 import java.util.ArrayList;
 
 public class SearchableMaze  implements ISearchable {
-    /**
-     * Constructor:
-     * initializes 2D arraylist
-     * adds relevent Positions to the frame arraylist
-     * creates start and goal positions
-     *
-     * @param columns
-     * @param rows
-     */
     private Maze maze;
     private AState startState;
     private AState goalState;
     private boolean[][] visited;
 
+    /**
+     *  Constructor:
+     *   initializes 2D arraylist
+     *   adds relevent Positions to the frame arraylist
+     *   creates start and goal positions
+     * @param maze
+     */
     public SearchableMaze(Maze maze) {
         this.maze = maze;
         visited = new boolean[maze.getRows()][maze.getColumns()];
@@ -34,6 +32,12 @@ public class SearchableMaze  implements ISearchable {
         int col = getData(startState).get(1);
         visited[rows][col] = true;}
 
+
+    /**
+     * Take the string of the state and pull out the column and row of the maze
+     * @param state
+     * @return an arraylist of column and row
+     */
     private ArrayList<Integer> getData(AState state) {
         ArrayList<Integer> data = new ArrayList<Integer>(2);
         int firstSpaceIndex=  state.getState().indexOf(" ");
@@ -59,6 +63,14 @@ public class SearchableMaze  implements ISearchable {
         return visited;
     }
 
+
+    /**
+     * returns the neighbors of a state in a clockwise order while they are in the range of the
+     * maze, have not been visited, and if they are diagnol they only count if there is a
+     * regular path to them
+     * @param state
+     * @return
+     */
     @Override
     public ArrayList<AState> GetAllPossibleStates(AState state) {
         ArrayList<AState> pStates = new ArrayList<AState>();
@@ -119,6 +131,12 @@ public class SearchableMaze  implements ISearchable {
                     pStates.add(tenAndHalf);}}}
         return pStates;}
 
+
+    /**
+     * gets the path all the way to the start state from the given state
+     * @param start
+     * @return solution
+     */
     public Solution makeSol(AState start) {
         Solution sol = new Solution();
         while (!start.equals(this.GetStartState())){
@@ -127,16 +145,30 @@ public class SearchableMaze  implements ISearchable {
         sol.addToSolution(this.GetStartState());
         return sol;}
 
+    /**
+     *
+     * @param state
+     * @return checks if a certain state has been visited
+     */
     public boolean isVisited(AState state) {
         int rows = getData(state).get(0);
         int col = getData(state).get(1);
         return visited[rows][col];}
+
+    /**
+     * changes status of a state to visited
+     * @param state
+     */
 
     public void addVisited(AState state) {
         int rows = getData(state).get(0);
         int col = getData(state).get(1);
         visited[rows][col] = true;}
 
+
+    /**
+     * cleans the visited array
+     */
     public void cleanVisited(){
         for (int i=0; i< maze.getRows(); i++) {
             for (int j=0; j< maze.getColumns(); j++) {

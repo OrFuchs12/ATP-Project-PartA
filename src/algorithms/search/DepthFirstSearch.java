@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
+
+/**
+ * searches using the DFS algorithm using a stack
+ */
 public class DepthFirstSearch extends ASearchingAlgorithm{
     protected Stack<AState> DepthOpenList;
 
@@ -13,6 +17,14 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         DepthOpenList = new Stack<AState>();
     }
 
+
+    /**
+     * spreads out as deep as it can until reaches the goal state
+     * we mark the visited states so we don't repeat
+     * Note: we reverse the neightbors so the stack takes care in the right order
+     * @param problem
+     * @return the Solution
+     */
     @Override
     public Solution solve(ISearchable problem) {
         problem.cleanVisited();

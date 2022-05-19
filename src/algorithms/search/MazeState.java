@@ -1,6 +1,10 @@
 package algorithms.search;
 import java.util.ArrayList;
 
+
+/**
+ * describes a state of a MAZE with rows and columns, string, cost, and another father state
+ */
 public class MazeState extends AState{
     private int row;
     private int col;
@@ -18,6 +22,11 @@ public class MazeState extends AState{
         return col;
     }
 
+    /**
+     * comparing maze states by row and column only!
+     * @param o
+     * @return boolean if the states have the same location
+     */
     @Override
     public boolean equals(Object o) {
         if (this.getClass() == o.getClass()) {
@@ -27,6 +36,11 @@ public class MazeState extends AState{
             return false;}
         return false;}
 
+
+    /**
+     *
+     * @return the state in the form of {row,column}
+     */
     @Override
     public String toString() {
         return "{" +
