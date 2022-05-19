@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * EmptyMazeGenerator extends the AMazeGenertor class. Creates mazes that include
+ * EmptyMazeGenerator extends the AMazeGenerator class. Creates mazes that include
  * all zeros.
  */
 public class EmptyMazeGenerator extends AMazeGenerator {
@@ -18,23 +18,9 @@ public class EmptyMazeGenerator extends AMazeGenerator {
         Maze Empty = new Maze(columns,rows);
         for (int i=0; i<rows; i++){
             for (int j =0; j<columns; j++){
-                Empty.AddPosition(j,i,0);
+                Empty.setPosition(j,i,0);
             }
         }
-
-//        ArrayList<Position> Frame = new ArrayList<>(2*rows + 2* columns - 4) ;
-//        for(int i=0; i<columns; i++){
-//            Frame.add(new Position(i,0));
-//            Frame.add(new Position(i,rows-1) );
-//        }
-//        for (int i = 0 ; i<rows; i++){
-//            Frame.add(new Position(0,i));
-//            Frame.add(new Position(columns-1, i));
-//        }
-//        Collections.shuffle(Frame);
-//        Empty.setStartPosition(Frame.get(0));
-//        Empty.setGoalPosition(Frame.get(1));
-
         return Empty;
     }
 

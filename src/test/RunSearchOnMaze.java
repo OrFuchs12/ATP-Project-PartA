@@ -25,7 +25,12 @@ public class RunSearchOnMaze {
         for (int i = 0; i < solutionPath.size(); i++) {
             System.out.println(String.format("%s. %s",i,solutionPath.get(i)));
         }
-        System.out.println(solution.getSolutionPath().get(solutionPath.size()-1).getCost());
+        if (searcher.getName() == "BestFirstSearch") {
+            System.out.println(solution.getSolutionPath().get(solutionPath.size() - 1).getCost());
+        }
+        else{
+            System.out.println(solution.getTotal_cost());
+        }
     }
 }
 

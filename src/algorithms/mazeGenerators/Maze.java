@@ -1,6 +1,7 @@
 package algorithms.mazeGenerators;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -16,34 +17,15 @@ public class Maze {
     protected Position StartPosition;
     protected Position GoalPosition;
     protected ArrayList<Position> Frame;
-    protected ArrayList<ArrayList<Integer>> n_Maze;
+    protected int[][] n_Maze;
 
-    /**
-     *
-     * @return columns
-     */
     public int getColumns() {
         return columns;
     }
 
-
-
-//    public void setColumns(int columns) {
-//        this.columns = columns;
-//    }
-
-
-    /**
-     *
-     * @return rows
-     */
     public int getRows() {
         return rows;
     }
-
-//    public void setRows(int rows) {
-//        this.rows = rows;
-//    }
 
     /**
      *
@@ -52,7 +34,7 @@ public class Maze {
      */
     public int getValue(Position p)
     {
-        return n_Maze.get(p.getRowIndex()).get(p.getColumnIndex());
+        return n_Maze[p.getRowIndex()][p.getColumnIndex()];
     }
 
     /**
@@ -64,18 +46,12 @@ public class Maze {
 
     public int getValue(int columns, int rows)
     {
-        return n_Maze.get(rows).get(columns);
+        return n_Maze[rows][columns];
     }
-
-    /**
-     *
-     * @return the location of the StartPosition
-     */
 
     public Position getStartPosition() {
         return StartPosition;
     }
-
 
     /**
      * updates the start position according to the param only if it is part of the frame
@@ -84,18 +60,11 @@ public class Maze {
     public void setStartPosition(Position startPosition) {
         if (Frame.contains(startPosition)){
             StartPosition = startPosition;
-            setPosition(startPosition, 0);}
-    }
-
-    /**
-     *
-     * @return the location of the goal position
-     */
+            setPosition(startPosition, 0);}}
 
     public Position getGoalPosition() {
         return GoalPosition;
     }
-
 
     /**
      * updates the goal position according to the param only if it is part of the frame
@@ -104,66 +73,49 @@ public class Maze {
     public void setGoalPosition(Position goalPosition) {
         if(Frame.contains(goalPosition)){
         GoalPosition = goalPosition;
-        setPosition(GoalPosition,0);}
-    }
-
+        setPosition(GoalPosition,0);}}
 
     /**
      * Constructor:
-     * initializes 2D arraylist
+     * initializes 2D array
      * adds relevent Positions to the frame arraylist
      * creates start and goal positions
-     *
+     * changes invalid rows/columns to size 2
      * @param columns
      * @param rows
      */
     public Maze(int columns, int rows) {
-        this.n_Maze = new ArrayList<ArrayList<Integer>>(rows);
-        for (int i=0 ; i<rows; i++){
-            n_Maze.add(new ArrayList<Integer>(columns));}
+        if ((columns ==1 && rows == 1) || (columns ==0 && rows ==0)) {
+            rows =2;
+            columns=2;}
+        this.n_Maze = new int[rows][columns];
         this.columns =columns;
         this.rows = rows;
         int frame_size;
-        if (rows == 1 || columns == 1 ||rows == 2 || columns==2 )
-        {
-            frame_size =rows*columns;
-        }
+        if (rows == 1 || columns == 1 ||rows == 2 || columns==2 ) {
+            frame_size =rows*columns;}
         else {
-            frame_size = 2*rows + 2* columns - 4;
-        }
-
+            frame_size = 2*rows + 2* columns - 4;}
         Frame = new ArrayList<>(frame_size) ;
-        if (frame_size == rows*columns)
-        {
+        if (frame_size == rows*columns) {
             for (int i=0; i<rows; i++) {
                 for (int j = 0; j < columns; j++) {
-                    Frame.add(new Position(j, i));
-                }
-            }
-        }
+                    Frame.add(new Position(j, i));}}}
         else {
             for(int i=0; i<columns; i++){
                 Frame.add(new Position(i,0));
-                Frame.add(new Position(i,rows-1) );
-            }
+                Frame.add(new Position(i,rows-1) );}
             for (int i = 1 ; i<rows-1; i++){
                 Frame.add(new Position(0,i));
-                Frame.add(new Position(columns-1, i));
-            }
+                Frame.add(new Position(columns-1, i));}
         }
-
-        //Collections.shuffle(Frame);
         Random rand = new Random();
         int frame_rand1 = rand.nextInt(frame_size);
         int frame_rand2 = rand.nextInt(frame_size);
-        while (frame_rand2 == frame_rand1)
-        {
-          frame_rand2 =rand.nextInt(frame_size);
-        }
+        while (frame_rand2 == frame_rand1) {
+          frame_rand2 =rand.nextInt(frame_size);}
         StartPosition = Frame.get(frame_rand1);
         GoalPosition = Frame.get(frame_rand2);
-
-
     }
 
     /**
@@ -180,21 +132,17 @@ public class Maze {
      * @param value
      */
     public void setPosition(Position p, int value){
-
-        n_Maze.get(p.getRowIndex()).set(p.getColumnIndex(), value);
-
+        n_Maze[p.getRowIndex()][p.getColumnIndex()]= value;
     }
 
     /**
-     * adds a value to the position in the maze
-     * @param columns
-     * @param rows
+     * sets a value according to row and column
+     * @param col
+     * @param row
      * @param value
      */
-    public void AddPosition(int columns , int rows, int value){
-        n_Maze.get(rows).add(columns,value);
-    }
-
+    public void setPosition(int col, int row, int value){
+        n_Maze[row][col]= value;}
 
     /**
      * prints the n_Maze while the StartPoint is labeled S and GoalPoint E
@@ -202,86 +150,56 @@ public class Maze {
     public void print() {
         for (int i=0; i<rows; i++)
         {
-            if (StartPosition.getRowIndex() ==i && GoalPosition.getRowIndex() ==i)
-            {
+            if (StartPosition.getRowIndex() ==i && GoalPosition.getRowIndex() ==i) {
                 boolean firststart=false;
                 int first=0;
                 int second=0;
                 if (StartPosition.getColumnIndex() < GoalPosition.getColumnIndex()){
                      first = StartPosition.getColumnIndex();
                      second = GoalPosition.getColumnIndex();
-                     firststart=true;   }
+                     firststart=true; }
                 else{
                      first = GoalPosition.getColumnIndex();
                      second = StartPosition.getColumnIndex();
-                     firststart = false;
-                }
+                     firststart = false;}
                 System.out.print("[");
                 for (int j=0; j<first; j++){
-                    System.out.print(getValue(j,i)+ ", ");
-                }
-                if (firststart==true)
-                {
-                    System.out.print("S");
-                }
+                    System.out.print(getValue(j,i)+ ", ");}
+                if (firststart==true) {
+                    System.out.print("S");}
                 else{
-                    System.out.print("E");
-                }
-                for (int j=first+1; j<second; j++)
-                {
+                    System.out.print("E");}
+                for (int j=first+1; j<second; j++) {
                     System.out.print(", ");
-                    System.out.print(getValue(j,i)+"");
-                }
-                if (firststart==true)
-                {
-                    System.out.print(", E");
-                }
+                    System.out.print(getValue(j,i)+"");}
+                if (firststart==true) {
+                    System.out.print(", E");}
                 else{
-                    System.out.print(", S");
-                }
-                for (int j=second+1; j<columns;j++)
-                {
+                    System.out.print(", S");}
+                for (int j=second+1; j<columns;j++) {
                     System.out.print(", ");
-                    System.out.print(getValue(j,i)+"");
-                }
-                System.out.println("]");
-
-
-            }
-            else if (StartPosition.getRowIndex() ==i)
-            {
+                    System.out.print(getValue(j,i)+"");}
+                System.out.println("]");}
+            else if (StartPosition.getRowIndex() ==i) {
                 System.out.print("[");
-                for (int j=0; j<StartPosition.getColumnIndex(); j++)
-                {
-                    System.out.print(getValue(j,i)+ ", ");
-                }
+                for (int j=0; j<StartPosition.getColumnIndex(); j++) {
+                    System.out.print(getValue(j,i)+ ", ");}
                 System.out.print("S");
-                for (int j=StartPosition.getColumnIndex()+1; j<columns;j++)
-                {
+                for (int j=StartPosition.getColumnIndex()+1; j<columns;j++) {
                     System.out.print(", ");
-                    System.out.print(getValue(j,i)+"");
-                }
-                System.out.println("]");
-
-            }
-            else if (GoalPosition.getRowIndex() ==i)
-            {
+                    System.out.print(getValue(j,i)+"");}
+                System.out.println("]");}
+            else if (GoalPosition.getRowIndex() ==i) {
                 System.out.print("[");
-                for (int j=0; j<GoalPosition.getColumnIndex(); j++)
-                {
-                    System.out.print(getValue(j,i)+ ", ");
-                }
+                for (int j=0; j<GoalPosition.getColumnIndex(); j++) {
+                    System.out.print(getValue(j,i)+ ", ");}
                 System.out.print("E");
-                for (int j=GoalPosition.getColumnIndex()+1; j<columns;j++)
-                {
+                for (int j=GoalPosition.getColumnIndex()+1; j<columns;j++) {
                     System.out.print(", ");
-                    System.out.print(getValue(j,i)+"");
-                }
-                System.out.println("]");
-
-            }
+                    System.out.print(getValue(j,i)+"");}
+                System.out.println("]");}
             else{
-            System.out.println(n_Maze.get(i));}
+            System.out.println(Arrays.toString(n_Maze[i]));}
         }
     }
 }

@@ -15,7 +15,6 @@ class BestFirstSearchTest {
     Random rand = new Random();
     IMazeGenerator mg = new MyMazeGenerator();
 
-
     @Test
     void getName() {
         assertEquals("BestFirstSearch", Best.getName());
@@ -105,8 +104,33 @@ class BestFirstSearchTest {
             assertTrue(Math.abs(ms.getRow() -es.getRow()) <= 1);
         }
         assertFalse(sol.getSolutionPath().size() < 2);
+        for (int i=0; i<sol.getSolutionPath().size()-1; i++)
+        {
+            assertFalse(sol.getSolutionPath().get(i).getCost() > sol.getSolutionPath().get(i+1).getCost());
+        }
 
     }
+
+    @Test
+    void compBFS()
+    {
+        Maze maze = mg.generate(1000, 1000);
+        ISearchable s_maze = new SearchableMaze(maze);
+        long start = System.currentTimeMillis();
+        Solution solbest =Best.solve(s_maze);
+        long end = System.currentTimeMillis();
+        assertTrue(end-start <= 60000);
+        ASearchingAlgorithm Breadth = new BreadthFirstSearch();
+        long start1 = System.currentTimeMillis();
+        Solution sollbreadth= Breadth.solve((s_maze));
+        long end1 = System.currentTimeMillis();
+        assertTrue(end1-start1 <= 60000);
+        assertTrue((solbest.getSolutionPath().get(solbest.getSolutionPath().size()-1).getCost()) <= sollbreadth.getTotal_cost());
+    }
+
+
+
+
 
 
 

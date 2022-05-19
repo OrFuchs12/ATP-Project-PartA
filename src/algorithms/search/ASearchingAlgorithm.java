@@ -1,6 +1,7 @@
 package algorithms.search;
-
 import java.util.*;
+
+
 
 public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm {
     protected Queue<AState> openList;
@@ -10,8 +11,7 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm {
 
     public ASearchingAlgorithm() {
         openList = new LinkedList<AState>();
-        visitedNodes = 0;
-    }
+        visitedNodes = 0;}
 
     @Override
     public abstract String getName();

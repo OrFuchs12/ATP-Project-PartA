@@ -8,8 +8,7 @@ public class MazeState extends AState{
     public MazeState(int col, int row) {
         this.State = "Rows: " + row+ " Col: " + col;
         this.row= row;
-        this.col =col;
-    }
+        this.col =col;}
 
     public int getRow() {
         return row;
@@ -24,12 +23,9 @@ public class MazeState extends AState{
         if (this.getClass() == o.getClass()) {
             MazeState other = (MazeState)o;
             if (other.getRow() == this.row && other.getCol() == this.col) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
+                return true;}
+            return false;}
+        return false;}
 
     @Override
     public String toString() {

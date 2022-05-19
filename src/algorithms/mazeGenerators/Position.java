@@ -10,7 +10,6 @@ import java.util.Collections;
 public class Position {
     private int ColumnIndex;
     private int RowIndex;
-    //private boolean visited;
     private ArrayList<Position> father;
 
     /**
@@ -69,7 +68,6 @@ public class Position {
         RowIndex -= 1;
     }
 
-
     /**
      * Constructor
      * @param columnIndex
@@ -103,9 +101,6 @@ public class Position {
     /**
      * mixes the list of fathers
      */
-//    public void MixFather() {
-//        Collections.shuffle(father);
-//    }
 
     /**
      *
