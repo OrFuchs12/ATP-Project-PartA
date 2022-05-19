@@ -128,6 +128,21 @@ class BestFirstSearchTest {
         assertTrue((solbest.getSolutionPath().get(solbest.getSolutionPath().size()-1).getCost()) <= sollbreadth.getTotal_cost());
     }
 
+    @Test
+    void compInValid1()
+    {
+        Maze maze = mg.generate(1, 1);
+        ISearchable s_maze = new SearchableMaze(maze);
+        assertTrue(Best.solve(s_maze) != null);
+    }
+    @Test
+    void compInValid2()
+    {
+        Maze maze = mg.generate(0, 0);
+        ISearchable s_maze = new SearchableMaze(maze);
+        assertTrue(Best.solve(s_maze) != null);
+    }
+
 
 
 

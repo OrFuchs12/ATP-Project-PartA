@@ -22,6 +22,9 @@ public class SimpleMazeGenerator extends AMazeGenerator {
     @Override
     public Maze generate(int columns, int rows) {
         Maze Simple = new Maze(columns, rows);
+        if ((columns ==1 && rows == 1) || columns ==0 || rows ==0) {
+            rows =2;
+            columns=2;}
         Random rand = new Random();
         for(int i =0; i<rows; i++){
             for(int j = 0; j< columns; j++){

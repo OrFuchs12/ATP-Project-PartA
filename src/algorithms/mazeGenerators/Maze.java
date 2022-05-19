@@ -85,7 +85,7 @@ public class Maze {
      * @param rows
      */
     public Maze(int columns, int rows) {
-        if ((columns ==1 && rows == 1) || (columns ==0 && rows ==0)) {
+        if ((columns ==1 && rows == 1) || columns ==0 || rows ==0) {
             rows =2;
             columns=2;}
         this.n_Maze = new int[rows][columns];

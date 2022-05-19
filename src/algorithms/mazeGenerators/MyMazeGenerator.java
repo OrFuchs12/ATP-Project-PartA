@@ -23,6 +23,9 @@ public class MyMazeGenerator extends AMazeGenerator {
     public Maze generate(int columns, int rows) {
         ArrayList<Position> all_neighbors = new ArrayList<Position>();
         Maze MyMaze = new Maze(columns, rows);
+        if ((columns ==1 && rows == 1) || columns ==0 || rows ==0) {
+            rows =2;
+            columns=2;}
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 MyMaze.setPosition(j, i, 1);}}

@@ -16,6 +16,9 @@ public class EmptyMazeGenerator extends AMazeGenerator {
     @Override
     public Maze generate(int columns, int rows) {
         Maze Empty = new Maze(columns,rows);
+        if ((columns ==1 && rows == 1) || columns ==0 || rows ==0) {
+            rows =2;
+            columns=2;}
         for (int i=0; i<rows; i++){
             for (int j =0; j<columns; j++){
                 Empty.setPosition(j,i,0);

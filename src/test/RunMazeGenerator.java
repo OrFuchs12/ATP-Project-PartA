@@ -13,7 +13,7 @@ public class RunMazeGenerator {
 // prints the time it takes the algorithm to run
             System.out.println(String.format("Maze generation time(ms): %s", mazeGenerator.measureAlgorithmTimeMillis(10/*rows*/,10/*columns*/)));
 // generate another maze
-            Maze maze = mazeGenerator.generate(1000/*rows*/, 1000/*columns*/);
+            Maze maze = mazeGenerator.generate(0/*rows*/, 0/*columns*/);
 // prints the maze
             //System.out.println(maze.getStartPosition());
             //System.out.println(maze.getGoalPosition());
