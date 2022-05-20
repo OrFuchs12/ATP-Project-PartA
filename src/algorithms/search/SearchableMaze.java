@@ -72,7 +72,7 @@ public class SearchableMaze  implements ISearchable {
      * @return
      */
     @Override
-    public ArrayList<AState> GetAllPossibleStates(AState state) {
+    public ArrayList<AState> getAllPossibleStates(AState state) {
         ArrayList<AState> pStates = new ArrayList<AState>();
         MazeState state_maze = (MazeState)state;
         int rowIndex = state_maze.getRow();

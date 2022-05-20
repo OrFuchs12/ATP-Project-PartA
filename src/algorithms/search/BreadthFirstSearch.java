@@ -33,7 +33,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
                 Solution sol = problem.makeSol(curr);
                 return sol;}
             else {
-                ArrayList<AState> pStates = problem.GetAllPossibleStates(curr);
+                ArrayList<AState> pStates = problem.getAllPossibleStates(curr);
                 for (int i = 0; i < pStates.size(); i++) {
                     if (!openList.contains(pStates.get(i))) {
                         openList.add(pStates.get(i));

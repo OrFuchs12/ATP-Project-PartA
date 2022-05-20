@@ -78,7 +78,7 @@ public class Maze {
     /**
      * Constructor:
      * initializes 2D array
-     * adds relevent Positions to the frame arraylist
+     * adds relevant Positions to the frame arraylist
      * creates start and goal positions
      * changes invalid rows/columns to size 2
      * @param columns

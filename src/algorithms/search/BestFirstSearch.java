@@ -51,7 +51,7 @@ public class BestFirstSearch extends BreadthFirstSearch {
             else {
                 int mycost;
                 int othercost;
-                ArrayList<AState> pStates = problem.GetAllPossibleStates(curr);
+                ArrayList<AState> pStates = problem.getAllPossibleStates(curr);
                 for (int i = 0; i < pStates.size(); i++) {
                     mycost= pStates.get(i).getCost();
                     pStates.get(i).setCost(curr.getCost()+mycost);

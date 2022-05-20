@@ -39,7 +39,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
                 Solution sol = problem.makeSol(curr);
                 return sol;}
             else {
-                ArrayList<AState> pStates = problem.GetAllPossibleStates(curr);
+                ArrayList<AState> pStates = problem.getAllPossibleStates(curr);
                 Collections.reverse(pStates);
                 for (int i = 0; i < pStates.size(); i++) {
                     if (!DepthOpenList.contains(pStates.get(i))) {
