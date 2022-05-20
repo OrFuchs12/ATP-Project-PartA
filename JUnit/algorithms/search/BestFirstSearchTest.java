@@ -135,6 +135,9 @@ class BestFirstSearchTest {
         Maze maze = mg.generate(1, 1);
         ISearchable s_maze = new SearchableMaze(maze);
         assertTrue(Best.solve(s_maze) != null);
+        assertTrue(maze.getRows() ==2);
+        assertTrue(maze.getColumns() ==2);
+
     }
     @Test
     void compInValid2()
@@ -142,6 +145,38 @@ class BestFirstSearchTest {
         Maze maze = mg.generate(0, 0);
         ISearchable s_maze = new SearchableMaze(maze);
         assertTrue(Best.solve(s_maze) != null);
+        assertTrue(maze.getRows() ==2);
+        assertTrue(maze.getColumns() ==2);
+    }
+
+    @Test
+    void check10X1()
+    {
+        Maze maze = mg.generate(10, 1);
+        ISearchable s_maze = new SearchableMaze(maze);
+        Solution sol = Best.solve(s_maze);
+        assertTrue( sol != null);
+        for (int i=0; i< sol.getSolutionPath().size(); i++)
+        {
+            MazeState curr= (MazeState)sol.getSolutionPath().get(i);
+            assertTrue(curr.getRow() ==0);
+            assertTrue(curr.getCol() < 10 && curr.getCol() >= 0);
+        }
+    }
+
+    @Test
+    void check2X2()
+    {
+        Maze maze = mg.generate(2, 2);
+        ISearchable s_maze = new SearchableMaze(maze);
+        Solution sol = Best.solve(s_maze);
+        assertTrue( sol != null);
+        for (int i=0; i< sol.getSolutionPath().size(); i++)
+        {
+            MazeState curr= (MazeState)sol.getSolutionPath().get(i);
+            assertTrue(curr.getRow() <2 && curr.getRow() >= 0);
+            assertTrue(curr.getCol() < 2 && curr.getCol() >= 0);
+        }
     }
 
 

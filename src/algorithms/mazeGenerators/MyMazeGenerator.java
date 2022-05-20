@@ -31,10 +31,17 @@ public class MyMazeGenerator extends AMazeGenerator {
                 MyMaze.setPosition(j, i, 1);}}
         MyMaze.setPosition(MyMaze.getStartPosition(), 0);
         if (rows == 2 && columns == 2) {
-            if (!MyMaze.getStartPosition().equals(MyMaze.getGoalPosition())) {
+            if( MyMaze.getStartPosition().getRowIndex() != MyMaze.getGoalPosition().getRowIndex() && MyMaze.getStartPosition().getColumnIndex() != MyMaze.getGoalPosition().getColumnIndex()) {
                 Random rand = new Random();
-                int rand_point = rand.nextInt(2);
-                MyMaze.setPosition(MyMaze.getFrame().get(rand_point + 2), 0);}
+                int coltozero = rand.nextInt(2);
+                Position zero = new Position(0,0);
+                if (MyMaze.getGoalPosition().equals(zero) || MyMaze.getStartPosition().equals(zero)) {
+                    if (coltozero ==0) {
+                        MyMaze.setPosition(coltozero,1 , 0);}
+                    else{
+                        MyMaze.setPosition(coltozero,0 , 0);}}
+                else {
+                    MyMaze.setPosition(coltozero,coltozero , 0);}}
             MyMaze.setPosition(MyMaze.getGoalPosition(), 0);}
         else {
             Position curr = new Position(MyMaze.getStartPosition().getColumnIndex(), MyMaze.getStartPosition().getRowIndex());
