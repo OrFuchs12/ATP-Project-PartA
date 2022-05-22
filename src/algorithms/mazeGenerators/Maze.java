@@ -91,6 +91,24 @@ public class Maze {
         this.n_Maze = new int[rows][columns];
         this.columns =columns;
         this.rows = rows;
+        this.Frame = makeFrame(rows, columns);
+        int frame_size = this.Frame.size();
+        Random rand = new Random();
+        int frame_rand1 = rand.nextInt(frame_size);
+        int frame_rand2 = rand.nextInt(frame_size);
+        while (frame_rand2 == frame_rand1) {
+          frame_rand2 =rand.nextInt(frame_size);}
+        StartPosition = Frame.get(frame_rand1);
+        GoalPosition = Frame.get(frame_rand2);}
+
+    /**
+     *
+     * @param rows
+     * @param columns
+     * @return an arraylist of positions that include the frame of the maze
+     */
+    private ArrayList<Position> makeFrame(int rows, int columns)
+    {
         int frame_size;
         if (rows == 1 || columns == 1 ||rows == 2 || columns==2 ) {
             frame_size =rows*columns;}
@@ -109,13 +127,7 @@ public class Maze {
                 Frame.add(new Position(0,i));
                 Frame.add(new Position(columns-1, i));}
         }
-        Random rand = new Random();
-        int frame_rand1 = rand.nextInt(frame_size);
-        int frame_rand2 = rand.nextInt(frame_size);
-        while (frame_rand2 == frame_rand1) {
-          frame_rand2 =rand.nextInt(frame_size);}
-        StartPosition = Frame.get(frame_rand1);
-        GoalPosition = Frame.get(frame_rand2);
+        return Frame;
     }
 
     /**
@@ -148,8 +160,7 @@ public class Maze {
      * prints the n_Maze while the StartPoint is labeled S and GoalPoint E
      */
     public void print() {
-        for (int i=0; i<rows; i++)
-        {
+        for (int i=0; i<rows; i++) {
             if (StartPosition.getRowIndex() ==i && GoalPosition.getRowIndex() ==i) {
                 boolean firststart=false;
                 int first=0;
