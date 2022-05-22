@@ -22,10 +22,18 @@ public class Solution {
         solution.add(0,state);
         total_cost += state.getCost();}
 
+    /**
+     *
+     * @return an arrayList contains all the states in the solution
+     */
     public ArrayList<AState> getSolutionPath()
     {
         return solution;
     }
 
+    /**
+     *
+     * @return the total cost of the states in the solution
+     */
     public int getTotal_cost() {return total_cost;}
 }

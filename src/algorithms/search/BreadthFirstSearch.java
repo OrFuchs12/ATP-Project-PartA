@@ -44,6 +44,10 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
                         return sol;}}}}
         return null;}
 
+    /**
+     *
+     * @return the name of the searching algorithm
+     */
     @Override
     public String getName() {
         return "BreadthFirstSearch";

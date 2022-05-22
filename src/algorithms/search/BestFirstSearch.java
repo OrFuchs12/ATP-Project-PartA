@@ -11,7 +11,14 @@ public class BestFirstSearch extends BreadthFirstSearch {
      * comparator for the priority queue, adds the smallest cost to the beginning
      */
     class theComparator implements Comparator<AState>{
+        /**
+         * comparing function between state(compares by the cost of the states)
+         * @param state1
+         * @param state2
+         * @return 1 if state1 is bigger or equals, -1 otherwise
+         */
         @Override
+
         public int compare(AState state1, AState state2) {
             AState st1 = state1;
             AState st2 = state2;
@@ -20,10 +27,16 @@ public class BestFirstSearch extends BreadthFirstSearch {
             }
             else return -1;}}
 
+    /**
+     *
+     * @return the name of the searching algorithm
+     */
     @Override
     public String getName() {return "BestFirstSearch";}
 
-
+    /**
+     * constructor for the searching algorithm
+     */
     public BestFirstSearch() {BestOpenList = new PriorityQueue<AState>(1, new theComparator());}
 
     /**

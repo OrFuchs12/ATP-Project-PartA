@@ -51,6 +51,10 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
                         return sol;}}}}
         return null;}
 
+    /**
+     *
+     * @return the name of the searching algorithm
+     */
     @Override
     public String getName() {
         return "DepthFirstSearch";

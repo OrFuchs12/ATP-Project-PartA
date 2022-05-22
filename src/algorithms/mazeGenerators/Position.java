@@ -20,6 +20,11 @@ public class Position {
         return ColumnIndex;
     }
 
+    /**
+     *
+     * @param o
+     * @return true of the this position equals the object o, false otherwise
+     */
     @Override
     public boolean equals(Object o)
     {

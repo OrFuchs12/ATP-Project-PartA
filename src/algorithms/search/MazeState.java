@@ -9,15 +9,28 @@ public class MazeState extends AState{
     private int row;
     private int col;
 
+    /**
+     * constructor for a mazeState
+     * @param col
+     * @param row
+     */
     public MazeState(int col, int row) {
         this.State = "Rows: " + row+ " Col: " + col;
         this.row= row;
         this.col =col;}
 
+    /**
+     *
+     * @return the row index of the MazeState
+     */
     public int getRow() {
         return row;
     }
 
+    /**
+     *
+     * @return the column index of the MazeState
+     */
     public int getCol() {
         return col;
     }

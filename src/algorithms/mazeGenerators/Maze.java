@@ -19,10 +19,18 @@ public class Maze {
     protected ArrayList<Position> Frame;
     protected int[][] n_Maze;
 
+    /**
+     *
+     * @return the number of columns int the maze
+     */
     public int getColumns() {
         return columns;
     }
 
+    /**
+     *
+     * @return the number of rows int the maze
+     */
     public int getRows() {
         return rows;
     }
@@ -49,6 +57,10 @@ public class Maze {
         return n_Maze[rows][columns];
     }
 
+    /**
+     *
+     * @return the start position of the maze
+     */
     public Position getStartPosition() {
         return StartPosition;
     }
