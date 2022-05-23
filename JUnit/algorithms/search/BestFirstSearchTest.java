@@ -4,7 +4,8 @@ import algorithms.mazeGenerators.IMazeGenerator;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.mazeGenerators.SimpleMazeGenerator;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 
 import java.util.Random;
