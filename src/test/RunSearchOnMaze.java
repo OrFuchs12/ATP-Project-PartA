@@ -3,6 +3,8 @@ import algorithms.mazeGenerators.IMazeGenerator;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.search.*;
+
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class RunSearchOnMaze {
@@ -13,6 +15,9 @@ public class RunSearchOnMaze {
         solveProblem(searchableMaze, new BreadthFirstSearch());
         solveProblem(searchableMaze, new DepthFirstSearch());
         solveProblem(searchableMaze, new BestFirstSearch());
+
+
+
     }
     private static void solveProblem(ISearchable domain, ISearchingAlgorithm
             searcher) {

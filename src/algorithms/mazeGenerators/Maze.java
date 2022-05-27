@@ -225,4 +225,9 @@ public class Maze {
             System.out.println(Arrays.toString(n_Maze[i]));}
         }
     }
+    public byte[] toByteArray(){
+
+        return null;
+    }
+
 }
