@@ -21,6 +21,12 @@ public class MyCompressorOutputStream extends OutputStream {
         ByteArrayOutputStream sol = new ByteArrayOutputStream();
         int zero_counter = 0;
         int one_counter = 0;
+
+        //write rows, columns, start, end
+        for (int i=0; i<12; i++) {
+            sol.write(b[i]);}
+        //todo make sure it starts with zeros
+        //write the maze itself counting the sequence of zeros or ones
         for (int i=12; i<b.length; i++) {
             if (b[i] ==0 && zero_counter !=0 ) {
                 zero_counter++;}
@@ -44,6 +50,8 @@ public class MyCompressorOutputStream extends OutputStream {
                 one_counter++;}}
         if (zero_counter !=0) { sol.write(zero_counter);}
         else {sol.write(one_counter);}
+
+        //make it the right size
         ByteBuffer buffer = ByteBuffer.allocate(sol.size());
         buffer.put(sol.toByteArray());
         out.write(buffer.array());
