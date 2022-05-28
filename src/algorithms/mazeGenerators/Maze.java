@@ -1,9 +1,11 @@
 package algorithms.mazeGenerators;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
+import java.io.ByteArrayOutputStream;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+import java.util.*;
+
 
 
 /**
@@ -113,6 +115,34 @@ public class Maze {
         StartPosition = Frame.get(frame_rand1);
         GoalPosition = Frame.get(frame_rand2);}
 
+
+    public  Maze(byte[] byte_array) {
+          rows = new BigInteger(Arrays.copyOfRange(byte_array, 0, 2)).intValue();
+          columns = new BigInteger(Arrays.copyOfRange(byte_array, 2,4)).intValue();
+          if ((columns ==1 && rows == 1) || columns ==0 || rows ==0) {
+            rows =2;
+            columns=2;}
+          n_Maze = new int[rows][columns];
+          int start_row = new BigInteger(Arrays.copyOfRange(byte_array, 4,6)).intValue();
+          int start_col = new BigInteger(Arrays.copyOfRange(byte_array, 6,8)).intValue();
+          StartPosition = new Position(start_col, start_row);
+          int goal_row = new BigInteger(Arrays.copyOfRange(byte_array, 8,10)).intValue();
+          int goal_col = new BigInteger(Arrays.copyOfRange(byte_array, 10,12)).intValue();
+          GoalPosition = new Position(goal_col, goal_row);
+          int counter =0;
+          for (int i=0; i< rows; i++) {
+              for (int j=0; j< columns; j++) {
+                  n_Maze[i][j]= byte_array[12 + rows *counter + j];}
+              counter++;
+          }
+        this.Frame = makeFrame(rows, columns);
+        int frame_size = this.Frame.size();
+        Random rand = new Random();
+        int frame_rand1 = rand.nextInt(frame_size);
+        int frame_rand2 = rand.nextInt(frame_size);
+        while (frame_rand2 == frame_rand1) {
+            frame_rand2 =rand.nextInt(frame_size);}
+    }
     /**
      *
      * @param rows
@@ -226,8 +256,31 @@ public class Maze {
         }
     }
     public byte[] toByteArray(){
-
-        return null;
+        ByteArrayOutputStream bb= new ByteArrayOutputStream();
+        BigInteger curr_rows = BigInteger.valueOf(rows);
+        BigInteger curr_col = BigInteger.valueOf(columns);
+        BigInteger startrow= BigInteger.valueOf(StartPosition.getRowIndex());
+        BigInteger startcol = BigInteger.valueOf(StartPosition.getColumnIndex());
+        BigInteger goalrow= BigInteger.valueOf(GoalPosition.getRowIndex());
+        BigInteger goalcol = BigInteger.valueOf(GoalPosition.getColumnIndex());
+        for (int i=0; i<rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                    bb.write(n_Maze[i][j]);}}
+        ByteBuffer buffer = ByteBuffer.allocate(bb.size() + 12);
+        if (curr_rows.toByteArray().length ==1) {buffer.put((byte)0);}
+        buffer.put(curr_rows.toByteArray());
+        if (curr_col.toByteArray().length ==1) {buffer.put((byte)0);}
+        buffer.put(curr_col.toByteArray());
+        if (startrow.toByteArray().length ==1) {buffer.put((byte)0);}
+        buffer.put(startrow.toByteArray());
+        if (startcol.toByteArray().length ==1) {buffer.put((byte)0);}
+        buffer.put(startcol.toByteArray());
+        if (goalrow.toByteArray().length ==1) {buffer.put((byte)0);}
+        buffer.put(goalrow.toByteArray());
+        if (goalcol.toByteArray().length ==1) {buffer.put((byte)0);}
+        buffer.put(goalcol.toByteArray());
+        buffer.put(bb.toByteArray());
+        return buffer.array();
     }
 
 }

@@ -4,17 +4,22 @@ import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.search.*;
 
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class RunSearchOnMaze {
     public static void main(String[] args) {
         IMazeGenerator mg = new MyMazeGenerator();
-        Maze maze = mg.generate(30, 30);
-        SearchableMaze searchableMaze = new SearchableMaze(maze);
-        solveProblem(searchableMaze, new BreadthFirstSearch());
-        solveProblem(searchableMaze, new DepthFirstSearch());
-        solveProblem(searchableMaze, new BestFirstSearch());
+        Maze maze = mg.generate(1000, 1000);
+//        SearchableMaze searchableMaze = new SearchableMaze(maze);
+//        solveProblem(searchableMaze, new BreadthFirstSearch());
+//        solveProblem(searchableMaze, new DepthFirstSearch());
+//        solveProblem(searchableMaze, new BestFirstSearch());
+
+
 
 
 
