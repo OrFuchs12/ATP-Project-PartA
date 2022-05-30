@@ -25,8 +25,10 @@ public class MyCompressorOutputStream extends OutputStream {
         //write rows, columns, start, end
         for (int i=0; i<12; i++) {
             sol.write(b[i]);}
-        //todo make sure it starts with zeros
         //write the maze itself counting the sequence of zeros or ones
+        if (b[12] == 1) {
+            sol.write(0);
+        }
         for (int i=12; i<b.length; i++) {
             if (b[i] ==0 && zero_counter !=0 ) {
                 zero_counter++;}
