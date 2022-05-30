@@ -1,17 +1,13 @@
 package IO;
 
-import algorithms.mazeGenerators.Position;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.Arrays;
 
-public class MyDecompressorInputStream extends InputStream{
+public class SimpleDecompressorInputStream extends InputStream{
     private InputStream in;
-    public MyDecompressorInputStream(InputStream b) {in = b;}
+    public SimpleDecompressorInputStream(InputStream b) {in = b;}
 
     @Override
     public int read(byte[] b) throws IOException {
@@ -56,3 +52,4 @@ public class MyDecompressorInputStream extends InputStream{
         return 0;
     }
 }
+

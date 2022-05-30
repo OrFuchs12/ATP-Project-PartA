@@ -16,11 +16,11 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
             ObjectInputStream fromClient = new ObjectInputStream(inFromClient);
             ObjectOutputStream toClient = new ObjectOutputStream(outToClient);
             ObjectInputStream maze = (ObjectInputStream) fromClient.readObject();
-
-            SearchableMaze searchableMaze = new SearchableMaze(maze);
+            // we put comment because it didnt run
+            //SearchableMaze searchableMaze = new SearchableMaze(maze);
             //todo which algorithm to solve with configuration
             ISearchingAlgorithm search = new BreadthFirstSearch();
-            Solution sol = search.solve(searchableMaze);
+            //Solution sol = search.solve(searchableMaze);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             OutputStream os = new MyCompressorOutputStream(out);
             //os.write(sol.toByteArray());

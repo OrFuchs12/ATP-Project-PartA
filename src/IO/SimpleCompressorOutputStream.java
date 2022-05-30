@@ -4,12 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 
-public class MyCompressorOutputStream extends OutputStream {
+public class SimpleCompressorOutputStream extends OutputStream {
     private OutputStream out;
 
-    public MyCompressorOutputStream(OutputStream out) {
+    public SimpleCompressorOutputStream(OutputStream out) {
         this.out = out;
     }
 
@@ -66,3 +65,4 @@ public class MyCompressorOutputStream extends OutputStream {
 
     }
 }
+
