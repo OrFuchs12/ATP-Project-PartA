@@ -26,14 +26,14 @@ public class SimpleDecompressorInputStream extends InputStream{
         int next_index = 12;
         for (int i =12;i<Byte_input.length; i++){
             if (i%2 ==0){
-                int zero_counter = Byte_input[i];
+                int zero_counter = (int)Byte_input[i]& 0xff;
                 for (int j = 0 ; j<zero_counter; j++){
                     b[next_index]= 0;
                     next_index ++;
                 }
             }
             else{
-                int one_counter = Byte_input[i];
+                int one_counter = (int)Byte_input[i]& 0xff;
                 for (int j = 0 ; j<one_counter; j++){
                     b[next_index]= 1;
                     next_index ++;

@@ -35,7 +35,7 @@ public class MyDecompressorInputStream extends InputStream{
         }
         for (int i=12; i< limit; i++)
         {
-           int num= Byte_input[i];
+           int num= (int)Byte_input[i] & 0xff;
            String s = Integer.toBinaryString(num);
            String tmp = "";
            int diff = 8- s.length();
@@ -54,7 +54,7 @@ public class MyDecompressorInputStream extends InputStream{
         }
 
         if (check != 0){
-            int last = Byte_input[Byte_input.length-1];
+            int last = (int)Byte_input[Byte_input.length-1] & 0xff;
             String s1 = Integer.toBinaryString(last);
             String tmp = "";
             int diff = check- s1.length();
