@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Base64;
 
 public class MyCompressorOutputStream extends OutputStream {
     private OutputStream out;
@@ -19,45 +20,42 @@ public class MyCompressorOutputStream extends OutputStream {
     @Override
     public void write(byte[] b) throws IOException {
         ByteArrayOutputStream sol = new ByteArrayOutputStream();
-        int zero_counter = 0;
-        int one_counter = 0;
 
         //write rows, columns, start, end
         for (int i=0; i<12; i++) {
             sol.write(b[i]);}
-        //write the maze itself counting the sequence of zeros or ones
+        //write the maze itself counting turning the ones and zeros from a binary number to int
 
-        for (int i=12; i<b.length; i++) {
-            if (b[i] ==0 && zero_counter !=0 ) {
-                zero_counter++;}
-            else if (b[i] ==0 && zero_counter ==0 && one_counter ==0){
-                zero_counter++;
+        int next_index =12;
+        while (next_index < b.length-8)
+        {
+            byte[] curr = Arrays.copyOfRange(b, next_index, next_index +8);
+            int[] counter= new int[8];
+            String s = "";
+            for (int i=0; i<8; i++)
+            {
+                int num = curr[i];
+                counter[i] = num;
+                s+= Integer.toString(num);
             }
-            else if (b[i] ==0 && zero_counter ==0){
-                while (one_counter > 255) {
-                    sol.write(255);
-                    sol.write(0);
-                    one_counter-=255;}
-                sol.write(one_counter);
-                one_counter=0;
-                zero_counter++;}
-            else if (b[i] ==1 && one_counter !=0){
-                one_counter++;}
-            else if (b[i] ==1 && one_counter ==0 && zero_counter ==0){
-                sol.write(0);
-                one_counter ++;
+            int final_num = Integer.parseUnsignedInt(s, 2);
+            sol.write(final_num);
+            next_index +=8;
+        }
+        if (next_index <= b.length -1)
+        {
+            byte[] curr = Arrays.copyOfRange(b, next_index, b.length);
+            int[] counter= new int[8];
+            String s = "";
+            for (int i=0; i<curr.length; i++)
+            {
+                int num = curr[i];
+                counter[i] = num;
+                s+= Integer.toString(num);
             }
-            else{
-
-                while (zero_counter >255) {
-                    sol.write(255);
-                    sol.write(0);
-                    zero_counter-=255;}
-                sol.write(zero_counter);
-                zero_counter=0;
-                one_counter++;}}
-        if (zero_counter !=0) { sol.write(zero_counter);}
-        else {sol.write(one_counter);}
+            int final_num = Integer.parseUnsignedInt(s, 2);
+            sol.write(final_num);
+        }
 
         //make it the right size
         ByteBuffer buffer = ByteBuffer.allocate(sol.size());

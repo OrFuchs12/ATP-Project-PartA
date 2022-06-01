@@ -33,10 +33,10 @@ public class SimpleCompressorOutputStream extends OutputStream {
                 zero_counter++;
             }
             else if (b[i] ==0 && zero_counter ==0){
-                while (one_counter > 255) {
-                    sol.write(255);
+                while (one_counter > 127) {
+                    sol.write(127);
                     sol.write(0);
-                    one_counter-=255;}
+                    one_counter-=127;}
                 sol.write(one_counter);
                 one_counter=0;
                 zero_counter++;}
@@ -48,10 +48,10 @@ public class SimpleCompressorOutputStream extends OutputStream {
             }
             else{
 
-                while (zero_counter >255) {
-                    sol.write(255);
+                while (zero_counter >127) {
+                    sol.write(127);
                     sol.write(0);
-                    zero_counter-=255;}
+                    zero_counter-=127;}
                 sol.write(zero_counter);
                 zero_counter=0;
                 one_counter++;}}
