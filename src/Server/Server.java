@@ -23,6 +23,11 @@ public class Server {
     }
 
     public void start(){
+        Thread serv = new Thread(()-> run());
+        serv.start();
+    }
+
+    public void run(){
         try {
             ServerSocket serverSocket = new ServerSocket(port);
             serverSocket.setSoTimeout(listeningIntervalMS);
@@ -31,9 +36,10 @@ public class Server {
                     Socket clientSocket = serverSocket.accept();
                     threadPool.submit(() -> {handleClient(clientSocket);});}
                 catch (SocketTimeoutException e){}}
-            serverSocket.close();
-            //threadPool.shutdown(); // do not allow any new tasks into the thread pool (not doing anything to the current tasks and running threads)
-            threadPool.shutdownNow(); // do not allow any new tasks into the thread pool, and also interrupts all running threads (do not terminate the threads, so if they do not handle interrupts properly, they could never stop...)
+
+            serverSocket.close();// do not allow any new tasks into the thread pool (not doing anything to the current tasks and running threads)
+            threadPool.shutdown();
+            //threadPool.shutdownNow(); // do not allow any new tasks into the thread pool, and also interrupts all running threads (do not terminate the threads, so if they do not handle interrupts properly, they could never stop...)
             }
             catch (IOException e) {}}
 

@@ -16,15 +16,20 @@ public class Client {
         }
 
         public void start(){
-            try(Socket serverSocket = new Socket(serverIP, serverPort)){
+            try
+            {
+                Socket serverSocket = new Socket(serverIP, serverPort);
                 System.out.println("connected to server - IP = " + serverIP + ", Port = " + serverPort);
                 strategy.clientStrategy(serverSocket.getInputStream(), serverSocket.getOutputStream());
-            } catch (IOException e) {
+                serverSocket.close();
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
     public void communicateWithServer() {
+            start();
     }
 }
 

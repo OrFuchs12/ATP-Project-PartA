@@ -48,8 +48,15 @@ public class MyDecompressorInputStream extends InputStream{
            for (int k=0; k< s.length(); k++)
            {
                int curr =Character.getNumericValue(s.charAt(k));
-               b[next_index] =(byte)curr;
-               next_index++;
+
+               try {
+                   b[next_index] = (byte) curr;
+                   next_index++;
+               }
+               catch (Exception e)
+               {
+                   System.out.println(k + " " + i + " " + next_index);
+               }
            }
         }
 
