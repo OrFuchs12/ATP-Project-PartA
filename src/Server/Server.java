@@ -29,6 +29,7 @@ public class Server {
 
     public void run(){
         try {
+            System.out.println("inside");
             ServerSocket serverSocket = new ServerSocket(port);
             serverSocket.setSoTimeout(listeningIntervalMS);
             while (!stop) {

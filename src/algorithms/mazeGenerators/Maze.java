@@ -134,7 +134,8 @@ public class Maze implements Serializable {
           int counter =0;
           for (int i=0; i< rows; i++) {
               for (int j=0; j< columns; j++) {
-                  n_Maze[i][j]= byte_array[12 + rows *counter + j];}
+                  //todo changed rows to columns
+                  n_Maze[i][j]= byte_array[12 + columns *counter + j];}
               counter++;
           }
         this.Frame = makeFrame(rows, columns);

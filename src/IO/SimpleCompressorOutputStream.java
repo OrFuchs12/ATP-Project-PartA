@@ -6,7 +6,8 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 
-public class SimpleCompressorOutputStream extends OutputStream implements Serializable {
+public class SimpleCompressorOutputStream extends OutputStream implements Serializable
+{
     private OutputStream out;
 
     public SimpleCompressorOutputStream(OutputStream out) {
@@ -48,7 +49,6 @@ public class SimpleCompressorOutputStream extends OutputStream implements Serial
                 one_counter ++;
             }
             else{
-
                 while (zero_counter >255) {
                     sol.write(255);
                     sol.write(0);
@@ -56,8 +56,22 @@ public class SimpleCompressorOutputStream extends OutputStream implements Serial
                 sol.write(zero_counter);
                 zero_counter=0;
                 one_counter++;}}
-        if (zero_counter !=0) { sol.write(zero_counter);}
-        else {sol.write(one_counter);}
+        if (zero_counter !=0) {
+            while(zero_counter > 255)
+            {
+                sol.write(255);
+                sol.write(0);
+                zero_counter-=255;}
+            sol.write(zero_counter);}
+        else
+        {
+            while (one_counter > 255) {
+                sol.write(255);
+                sol.write(0);
+                one_counter-=255;
+            }
+            sol.write(one_counter);
+        }
 
         //make it the right size
         ByteBuffer buffer = ByteBuffer.allocate(sol.size());
