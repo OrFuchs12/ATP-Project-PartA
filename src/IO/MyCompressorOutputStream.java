@@ -3,11 +3,12 @@ package IO;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Base64;
 
-public class MyCompressorOutputStream extends OutputStream {
+public class MyCompressorOutputStream extends OutputStream implements Serializable {
     private OutputStream out;
 
     public MyCompressorOutputStream(OutputStream out) {

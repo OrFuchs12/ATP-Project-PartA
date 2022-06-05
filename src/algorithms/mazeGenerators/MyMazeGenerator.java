@@ -1,4 +1,5 @@
 package algorithms.mazeGenerators;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -7,7 +8,7 @@ import java.util.Random;
 /**
  * generates a maze according to the Prim algorithm
  */
-public class MyMazeGenerator extends AMazeGenerator {
+public class MyMazeGenerator extends AMazeGenerator implements Serializable {
     public MyMazeGenerator() {
     }
 

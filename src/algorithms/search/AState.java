@@ -1,4 +1,5 @@
 package algorithms.search;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -6,7 +7,7 @@ import java.util.ArrayList;
  * Abstract class that describes a state using a String, Cost, and the state it came from.
  * Includes getters and setters. Overrides the equal function which is implemented in its successors
  */
-public abstract class AState {
+public abstract class AState implements Serializable {
     protected String State;
     private int Cost;
     private AState CameFrom;

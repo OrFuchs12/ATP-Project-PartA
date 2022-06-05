@@ -1,6 +1,7 @@
 package algorithms.mazeGenerators;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -13,13 +14,14 @@ import java.util.*;
  * arraylist of Integers while 0 is a path and 1 is a wall, and Frame is an arraylist of Positions that describes all
  * of the Positions that are considered on the frame of the maze.
  */
-public class Maze {
+public class Maze implements Serializable {
     protected int columns;
     protected int rows;
     protected Position StartPosition;
     protected Position GoalPosition;
     protected ArrayList<Position> Frame;
     protected int[][] n_Maze;
+
 
     /**
      *

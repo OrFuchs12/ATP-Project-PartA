@@ -3,9 +3,10 @@ package IO;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 
-public class SimpleCompressorOutputStream extends OutputStream {
+public class SimpleCompressorOutputStream extends OutputStream implements Serializable {
     private OutputStream out;
 
     public SimpleCompressorOutputStream(OutputStream out) {

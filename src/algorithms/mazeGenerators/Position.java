@@ -1,4 +1,5 @@
 package algorithms.mazeGenerators;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,7 +8,7 @@ import java.util.Collections;
  * Position describes a location with its column and row index, has an arraylist of Positions which includes
  * its fathers
  */
-public class Position {
+public class Position implements Serializable {
     private int ColumnIndex;
     private int RowIndex;
     private ArrayList<Position> father;

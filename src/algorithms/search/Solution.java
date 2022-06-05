@@ -1,4 +1,5 @@
 package algorithms.search;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -6,7 +7,7 @@ import java.util.ArrayList;
  * also calculates total cost
  */
 
-public class Solution {
+public class Solution implements Serializable {
     private ArrayList<AState> solution;
     int total_cost;
 
