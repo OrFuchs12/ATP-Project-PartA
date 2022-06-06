@@ -62,7 +62,7 @@ public class MyDecompressorInputStream extends InputStream{
                }
                catch (Exception e)
                {
-                   System.out.println(k + " " + i + " " + next_index);
+
                }
            }
         }
