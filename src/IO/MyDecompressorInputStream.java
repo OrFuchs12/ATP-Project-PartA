@@ -14,6 +14,13 @@ public class MyDecompressorInputStream extends InputStream{
     private InputStream in;
     public MyDecompressorInputStream(InputStream b) {in = b;}
 
+    /**
+     *receives  an empty byteArray with the complement size, decompresses the data that is in the inputStream
+     * according to the compress algorithm and writes it to the byteArray.
+     * @param b
+     * @return
+     * @throws IOException
+     */
     @Override
     public int read(byte[] b) throws IOException {
         byte[] Byte_input = in.readAllBytes();

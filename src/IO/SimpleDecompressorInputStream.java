@@ -8,7 +8,13 @@ import java.util.Arrays;
 public class SimpleDecompressorInputStream extends InputStream{
     private InputStream in;
     public SimpleDecompressorInputStream(InputStream b) {in = b;}
-
+    /**
+     *receives  an empty byteArray with the complement size, decompresses the data that is in the inputStream
+     * according to the simple compress algorithm and writes it to the byteArray.
+     * @param b
+     * @return
+     * @throws IOException
+     */
     @Override
     public int read(byte[] b) throws IOException {
 

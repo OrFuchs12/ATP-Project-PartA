@@ -18,6 +18,12 @@ public class MyCompressorOutputStream extends OutputStream implements Serializab
     @Override
     public void write(int b) throws IOException {}
 
+    /**
+     * receives a byteArray as a parameter that contains the details of the maze and compress it to a less memory consuming
+     * array with a compress algorithm. after the compress write the compressed array into the outputStream.
+     * @param b
+     * @throws IOException
+     */
     @Override
     public void write(byte[] b) throws IOException {
         ByteArrayOutputStream sol = new ByteArrayOutputStream();

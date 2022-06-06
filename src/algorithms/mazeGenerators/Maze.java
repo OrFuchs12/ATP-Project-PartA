@@ -117,7 +117,10 @@ public class Maze implements Serializable {
         StartPosition = Frame.get(frame_rand1);
         GoalPosition = Frame.get(frame_rand2);}
 
-
+    /**
+     * a constructor that receives a byteArray with data about a maze and returns a show of maze build by this data.
+     * @param byte_array
+     */
     public  Maze(byte[] byte_array) {
           rows = new BigInteger(Arrays.copyOfRange(byte_array, 0, 2)).intValue();
           columns = new BigInteger(Arrays.copyOfRange(byte_array, 2,4)).intValue();
@@ -258,6 +261,11 @@ public class Maze implements Serializable {
             System.out.println(Arrays.toString(n_Maze[i]));}
         }
     }
+
+    /**
+     *
+     * @return a byteArray that contains all the needed information about the maze.
+     */
     public byte[] toByteArray(){
         ByteArrayOutputStream bb= new ByteArrayOutputStream();
         BigInteger curr_rows = BigInteger.valueOf(rows);

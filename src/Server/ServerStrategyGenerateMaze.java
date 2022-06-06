@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ServerStrategyGenerateMaze implements IServerStrategy{
+
     @Override
     public void ServerStrategy(InputStream inFromClient, OutputStream outToClient) {
         try {
