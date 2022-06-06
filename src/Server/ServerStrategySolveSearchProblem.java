@@ -1,9 +1,6 @@
 package Server;
 import algorithms.mazeGenerators.Maze;
-import algorithms.search.BreadthFirstSearch;
-import algorithms.search.ISearchingAlgorithm;
-import algorithms.search.SearchableMaze;
-import algorithms.search.Solution;
+import algorithms.search.*;
 
 import java.io.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -42,7 +39,9 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
             }
             else {
                 SearchableMaze searchableMaze = new SearchableMaze(maze);
-                ISearchingAlgorithm search = new BreadthFirstSearch();
+                Configurations co = Configurations.getInstance();
+                String alg = co.getProp("mazeSearchingAlgorithm");
+                ISearchingAlgorithm search = getAlg(alg);
                 Solution sol = search.solve(searchableMaze);
                 handleSol(sol, id);
                 handleMaze(id, maze);
@@ -90,6 +89,23 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
 
         }
 
+    }
+
+    private ISearchingAlgorithm getAlg(String s)
+    {
+        if (s.equals("BreadthFirstSearch"))
+        {
+            return new BreadthFirstSearch();
+        }
+        if (s.equals("DepthFirstSearch"))
+        {
+            return new DepthFirstSearch();
+        }
+        if (s.equals("BestFirstSearch"))
+        {
+            return new BestFirstSearch();
+        }
+        return null;
     }
     
     

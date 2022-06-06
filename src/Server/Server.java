@@ -15,11 +15,12 @@ public class Server {
     private ExecutorService threadPool;
 
 
-    public Server(int port, int listeningIntervalMS, IServerStrategy strategy) {
+    public Server(int port, int listeningIntervalMS, IServerStrategy strategy)  {
         this.port = port;
         this.listeningIntervalMS = listeningIntervalMS;
         this.strategy = strategy;
-        this.threadPool = Executors.newFixedThreadPool(2);
+        Configurations co = Configurations.getInstance();
+        this.threadPool = Executors.newFixedThreadPool(Integer.parseInt(co.getProp("threadPoolSize")));
     }
 
     public void start(){
@@ -29,7 +30,6 @@ public class Server {
 
     public void run(){
         try {
-            System.out.println("inside");
             ServerSocket serverSocket = new ServerSocket(port);
             serverSocket.setSoTimeout(listeningIntervalMS);
             while (!stop) {
