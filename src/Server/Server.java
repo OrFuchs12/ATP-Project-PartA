@@ -7,6 +7,10 @@ import java.net.SocketTimeoutException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
+/**
+ * the class of the server. has a port, listening internval, startegy, a boolean stop, and thread pool
+ */
 public class Server {
     private int port;
     private int listeningIntervalMS;
@@ -23,11 +27,19 @@ public class Server {
         this.threadPool = Executors.newFixedThreadPool(Integer.parseInt(co.getProp("threadPoolSize")));
     }
 
+
+    /**
+     * creates a thread for the server
+     */
     public void start(){
         Thread serv = new Thread(()-> run());
         serv.start();
     }
 
+
+    /**
+     * looks for the clientSocket, creates the thread pool for the clients
+     */
     public void run(){
         try {
             ServerSocket serverSocket = new ServerSocket(port);
@@ -37,19 +49,26 @@ public class Server {
                     Socket clientSocket = serverSocket.accept();
                     threadPool.submit(() -> {handleClient(clientSocket);});}
                 catch (SocketTimeoutException e){}}
-
-            serverSocket.close();// do not allow any new tasks into the thread pool (not doing anything to the current tasks and running threads)
+            serverSocket.close();
             threadPool.shutdown();
-            //threadPool.shutdownNow(); // do not allow any new tasks into the thread pool, and also interrupts all running threads (do not terminate the threads, so if they do not handle interrupts properly, they could never stop...)
             }
             catch (IOException e) {}}
 
+
+    /**
+     * calls the strategy of the server
+     * @param clientSocket
+     */
     private void handleClient(Socket clientSocket) {
         try {
             strategy.ServerStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
             clientSocket.close();}
         catch (IOException e){}}
 
+
+    /**
+     * stops the server
+     */
     public void stop() {
         stop = true;}
 }

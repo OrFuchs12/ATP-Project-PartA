@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
+/**
+ * CLient: serverIP, serverPort, strategy
+ */
 public class Client {
      private InetAddress serverIP;
         private int serverPort;
@@ -15,7 +18,10 @@ public class Client {
             this.strategy = strategy;
         }
 
-        public void start(){
+    /**
+     * creates a new client socket, and applies its strategy
+     */
+    public void start(){
             try
             {
                 Socket serverSocket = new Socket(serverIP, serverPort);
@@ -28,6 +34,9 @@ public class Client {
             }
         }
 
+    /**
+     * calls the start of the client
+     */
     public void communicateWithServer() {
             start();
     }

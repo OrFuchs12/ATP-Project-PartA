@@ -7,8 +7,16 @@ import algorithms.mazeGenerators.*;
 import java.io.*;
 import java.util.ArrayList;
 
+
+
 public class ServerStrategyGenerateMaze implements IServerStrategy{
 
+
+    /**
+     * the client sends data for the server that generates a maze and sends it back
+     * @param inFromClient
+     * @param outToClient
+     */
     @Override
     public void ServerStrategy(InputStream inFromClient, OutputStream outToClient) {
         try {
@@ -34,6 +42,12 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
         }
     }
 
+
+    /**
+     * return the configurations according to the string
+     * @param s
+     * @return the relevent maze generator
+     */
     private IMazeGenerator getGen( String s)
     {
         if (s.equals("EmptyMazeGenerator"))

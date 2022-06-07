@@ -4,44 +4,30 @@ import algorithms.mazeGenerators.Maze;
 import algorithms.search.*;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Arrays;
+
 
 public class ServerStrategySolveSearchProblem implements IServerStrategy{
-    //ConcurrentHashMap<byte[], String> memory;
-    //AtomicInteger sol_counter;
-    //AtomicInteger maze_counter;
     String tempDirectoryPath;
 
     public ServerStrategySolveSearchProblem()
     {
-        //memory = new ConcurrentHashMap<>();
-        //sol_counter = new AtomicInteger();
-        //maze_counter = new AtomicInteger();
-        //sol_counter.set(0);
-        //maze_counter.set(0);
         tempDirectoryPath = System.getProperty("java.io.tmpdir");
     }
+
+    /**
+     * receives a maze from the client and solves it according to the search algorithm in the configurations
+     * saves the maze and the solution with its hashcode in a file in the computer and checks for already solved mazes
+     * @param inFromClient
+     * @param outToClient
+     */
     @Override
     public void ServerStrategy(InputStream inFromClient, OutputStream outToClient) {
         try {
             ObjectInputStream fromClient = new ObjectInputStream(inFromClient);
             ObjectOutputStream toClient = new ObjectOutputStream(outToClient);
             Maze maze = (Maze) fromClient.readObject();
-            byte[] id = maze.toByteArray();
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            OutputStream os = new MyCompressorOutputStream(out);
-            os.write(id);
-            os.flush();
-
-            String sol_name= "";
-            for (int i=0; i< out.toByteArray().length; i++)
-            {
-                int num = (int)out.toByteArray()[i];
-                sol_name+=Integer.toString(num);
-            }
-
+            int sol_name = Arrays.hashCode(maze.toByteArray());
 
             if (new File(tempDirectoryPath, "maze"+sol_name).exists())
             {
@@ -72,13 +58,16 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
 
     }
 
+    /**
+     * saves a solution to a temp file
+     * @param sol Solution
+     * @param sol_name name of the file
+     */
 
-    private synchronized void handleSol(Solution sol, String sol_name)
+    private synchronized void handleSol(Solution sol, int sol_name)
     {
-        //memory.put(id, "solution"+sol_counter);
         try {
             FileOutputStream sol_file = new FileOutputStream(tempDirectoryPath +"\\solution"+ sol_name);
-            //sol_counter.incrementAndGet();
             ObjectOutputStream out = new ObjectOutputStream(sol_file);
             out.writeObject(sol);
             out.flush();
@@ -89,10 +78,15 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
         }
     }
 
-    private synchronized void  handleMaze(String sol_name, Maze maze){
+
+    /**
+     * saves the maze to a file
+     * @param sol_name Solution
+     * @param maze
+     */
+    private synchronized void  handleMaze(int sol_name, Maze maze){
         try {
             FileOutputStream file = new FileOutputStream(tempDirectoryPath + "\\maze" + sol_name);
-            //maze_counter.incrementAndGet();
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(maze);
             out.flush();
@@ -106,6 +100,11 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
 
     }
 
+    /**
+     * according to configurations
+     * @param s
+     * @return algorithm to solve
+     */
     private ISearchingAlgorithm getAlg(String s)
     {
         if (s.equals("BreadthFirstSearch"))

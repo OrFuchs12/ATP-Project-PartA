@@ -3,6 +3,10 @@ package Server;
 import java.io.*;
 import java.util.Properties;
 
+/**
+ * object configurations is a singletone class that includes an instance and propreties.
+ * has a getter and a setter
+ */
 public class Configurations {
 
     private static Configurations inst;
